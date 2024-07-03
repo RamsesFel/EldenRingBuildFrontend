@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { EquipmentComponent } from '../equipment/equipment.component';
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [],
+  imports: [EquipmentComponent],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css'
 })

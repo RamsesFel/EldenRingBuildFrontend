@@ -19,7 +19,7 @@ export class WeaponsComponent {
   }
 
   getWeaponByName(){
-    this.eldenringService.getWeaponsByName("Forked Hatchet").subscribe((response:WeaponsModel) => {
+    this.eldenringService.getWeaponByName("Forked Hatchet").subscribe((response:WeaponsModel) => {
       this.currentWeapon = response;
       console.log(response);
     })
