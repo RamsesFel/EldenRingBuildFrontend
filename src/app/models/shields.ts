@@ -1,4 +1,4 @@
-export interface WeaponsModel {
+export interface ShieldsModel {
     success: boolean;
     count:   number;
     total:   number;
@@ -14,16 +14,24 @@ export interface Datum {
     defence:            Attack[];
     scalesWith:         ScalesWith[];
     requiredAttributes: Attack[];
-    category:           string;
+    category:           Category | null;
     weight:             number;
 }
 
 export interface Attack {
     name:   string;
-    amount: number;
+    amount: number | null;
+}
+
+export enum Category {
+    Greatshield = "Greatshield",
+    MediumShield = "Medium Shield",
+    SmallShield = "Small Shield",
+    SmallShields = "Small Shields",
 }
 
 export interface ScalesWith {
     name:     string;
     scaling?: string;
 }
+
