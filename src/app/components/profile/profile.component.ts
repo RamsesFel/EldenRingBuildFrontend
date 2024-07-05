@@ -1,6 +1,6 @@
 import {GoogleSigninButtonModule, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
-import { WeaponsComponent } from '../weapons/weapons.component';
+import { WeaponsComponent } from '../equipment/weapons/weapons.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 

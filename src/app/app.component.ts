@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { WeaponsComponent } from './components/weapons/weapons.component';
+import { WeaponsComponent } from './components/equipment/weapons/weapons.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 @Component({

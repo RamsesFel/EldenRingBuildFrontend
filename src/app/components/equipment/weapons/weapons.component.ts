@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { EldenRingService } from '../../services/elden-ring.service';
-import { WeaponsModel } from '../../models/weapons';
+import { EldenRingService } from '../../../services/elden-ring.service';
+import { WeaponsModel } from '../../../models/weapons';
 
 @Component({
   selector: 'app-weapons',
@@ -24,5 +24,4 @@ export class WeaponsComponent {
       console.log(response);
     })
   }
-
 }
