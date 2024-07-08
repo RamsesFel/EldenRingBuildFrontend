@@ -34,6 +34,7 @@ export class ArmorComponent {
       console.log(response);
     })
   }
+  
   changePage(num:number){
     this.pageCount += num;
     this.getArmorList();

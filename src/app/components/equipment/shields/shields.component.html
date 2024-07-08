@@ -17,8 +17,12 @@
         <td>{{s.name}}</td>
         <td>{{s.description}}</td>
         <td>{{s.category}}</td>
-        <td>{{s.attack}}</td>
-        <td>{{s.defence}}</td>
+        <td>@for (a of s.attack; track $index) {
+            {{a.name}} {{a.amount}}
+        }</td>
+        <td>@for (d of s.defence; track $index) {
+            {{d.name}} {{d.amount}}
+        }</td>
         <td>@for (sw of s.scalesWith; track $index) {
             {{sw.name}} {{sw.scaling}}
         }</td>
