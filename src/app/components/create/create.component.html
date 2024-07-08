@@ -1,2 +1,31 @@
 <p>create works!</p>
-<app-equipment></app-equipment>
+
+<button (click)="showList(1)">Weapon 1</button>
+<button (click)="showList(2)">Armor</button>
+
+@switch (this.toggleList) {
+    @case (1) {
+        <app-weapons></app-weapons>
+    }
+    @case (2) {
+        <app-armor></app-armor>
+    }
+    @case (3) {
+        <app-ashes-of-war></app-ashes-of-war>
+    }
+    @case (4) {
+        <app-classes></app-classes>
+    }
+    @case (5) {
+        <app-incantations></app-incantations>
+    }
+    @case (6) {
+        <app-sorceries></app-sorceries>
+    }
+    @case (7) {
+        <app-shields></app-shields>
+    }
+    @case (8) {
+        <app-talismans></app-talismans>
+    }
+}

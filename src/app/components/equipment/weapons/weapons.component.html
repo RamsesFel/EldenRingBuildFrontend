@@ -1,1 +1,31 @@
-<p>weapons works!</p>
+<input type="text" [(ngModel)]="formWeapon" placeholder="Search Weapon By Name">
+<button (click)="getWeaponByName()">Search</button>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Attack</th>
+        <th>Image</th>
+    </tr>
+@for (w of currentWeapons.data; track $index) {
+    <tr>
+        <td>{{w.name}}</td>
+        <td>{{w.description}}</td>
+        <td>{{w.category}}</td>
+        <td>@for (a of w.attack; track $index) {
+            {{a.name}} {{a.amount}}
+        }</td>
+        <td><img height="100px" src="{{w.image}}"></td>
+    </tr>
+}
+</table>
+
+
+@if (pageCount > 0) {
+    <button class="top" (click)="changePage(-1)" >Previous Page</button>
+}
+@if (pageCount < 3 ) {
+    <button (click)="changePage(1)">Next Page</button>
+}
+
