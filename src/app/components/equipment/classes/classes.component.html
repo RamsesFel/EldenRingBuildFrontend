@@ -6,6 +6,7 @@
         <th>Description</th>
         <th>Stats</th>
         <th>Image</th>
+        <th></th>
     </tr>
 @for (c of currentClass.data; track $index) {
     <tr>
@@ -23,6 +24,7 @@
             Arcane: {{c.stats.arcane}}
         </td>
         <td><img height="100px" src="{{c.image}}"></td>
+        <td><button (click)="addClass(c.id)">Add</button></td>
     </tr>
 }
 </table>

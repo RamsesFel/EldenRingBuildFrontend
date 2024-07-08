@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { EldenRingService } from '../../../services/elden-ring.service';
 import { FormsModule } from '@angular/forms';
 import { SorceriesModel } from '../../../models/sorceries';
@@ -15,6 +15,12 @@ export class SorceriesComponent {
 
   currentSorcery:SorceriesModel = {} as SorceriesModel;
   formSorcery:string = "";
+
+  @Output() addSorceryEvent = new EventEmitter<string>();
+
+  addSorcery(id:string){
+    this.addSorceryEvent.emit(id);
+  }
 
   ngOnInit(){
     this.getSorceriesList();

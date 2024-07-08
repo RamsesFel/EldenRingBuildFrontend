@@ -16,7 +16,7 @@
         <td>{{a.affinity}}</td>
         <td>{{a.skill}}</td>
         <td><img height="100px" src="{{a.image}}"></td>
-        <td><button>Add to Build</button></td>
+        <td><button (click)="addAshOfWar(a.id)">Add</button></td>
     </tr>
 }
 </table>

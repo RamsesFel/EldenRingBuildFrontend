@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EldenRingService } from '../../../services/elden-ring.service';
 import { IncantationsModel } from '../../../models/incantations';
@@ -15,6 +15,12 @@ export class IncantationsComponent {
 
   currentIncantation:IncantationsModel = {} as IncantationsModel;
   formIncantation:string = "";
+
+  @Output() addIncantationEvent = new EventEmitter<string>();
+
+  addIncantation(id:string){
+    this.addIncantationEvent.emit(id);
+  }
 
   ngOnInit(){
     this.getIncantationsList();

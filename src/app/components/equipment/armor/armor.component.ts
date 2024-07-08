@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EldenRingService } from '../../../services/elden-ring.service';
 import { ArmorModel } from '../../../models/armors';
@@ -16,6 +16,12 @@ export class ArmorComponent {
   currentArmor:ArmorModel = {} as ArmorModel;
   formArmor:string = "";
   pageCount: number = 0;
+
+  @Output() addArmorEvent = new EventEmitter<string>();
+
+  addArmor(id:string){
+    this.addArmorEvent.emit(id);
+  }
 
   ngOnInit(){
     this.getArmorList();

@@ -16,7 +16,13 @@ export class AshesOfWarComponent {
 
   currentAshOfWar:AshesOfWarModel = {} as AshesOfWarModel;
   formAshOfWar:string = "";
-  
+
+  @Output() addAshOfWarEvent = new EventEmitter<string>();
+
+  addAshOfWar(id:string){
+    this.addAshOfWarEvent.emit(id);
+  }
+
   ngOnInit(){
     this.getAshesOfWarList();
   }

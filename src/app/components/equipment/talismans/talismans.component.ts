@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { EldenRingService } from '../../../services/elden-ring.service';
 import { TalismansModel } from '../../../models/talismans';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +15,12 @@ export class TalismansComponent {
 
   currentTalisman:TalismansModel = {} as TalismansModel;
   formTalisman:string = "";
+  
+  @Output() addTalismanEvent = new EventEmitter<string>();
+
+  addTailisman(id:string){
+    this.addTalismanEvent.emit(id);
+  }
 
   ngOnInit(){
     this.getTalismanList();

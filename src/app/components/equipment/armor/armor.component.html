@@ -9,6 +9,7 @@
         <th>Resistance</th>
         <th>Weight</th>
         <th>Image</th>
+        <th></th>
     </tr>
 @for (a of currentArmor.data; track $index) {
     <tr>
@@ -23,6 +24,7 @@
         }</td>
         <td>{{a.weight}}</td>
         <td><img height="100px" src="{{a.image}}"></td>
+        <td><button (click)="addArmor(a.id)">Add</button></td>
     </tr>
 }
 </table>
