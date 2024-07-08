@@ -1,1 +1,20 @@
-<p>ashes-of-war works!</p>
+<input type="text" [(ngModel)]="formAshOfWar" placeholder="Search Ash of War By Name">
+<button (click)="getAshOfWarByName()">Search</button>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Affinity</th>
+        <th>Skill</th>
+        <th>Image</th>
+    </tr>
+@for (a of currentAshOfWar.data; track $index) {
+    <tr>
+        <td>{{a.name}}</td>
+        <td>{{a.description}}</td>
+        <td>{{a.affinity}}</td>
+        <td>{{a.skill}}</td>
+        <td><img height="100px" src="{{a.image}}"></td>
+    </tr>
+}
+</table>

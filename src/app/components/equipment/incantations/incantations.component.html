@@ -1,1 +1,28 @@
-<p>incantations works!</p>
+<input type="text" [(ngModel)]="formIncantation" placeholder="Search Incantation By Name">
+<button (click)="getIncantationByName()">Search</button>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Cost</th>
+        <th>Slots</th>
+        <th>Effects</th>
+        <th>Requires</th>
+        <th>Image</th>
+    </tr>
+@for (i of currentIncantation.data; track $index) {
+    <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.type}}</td>
+        <td>{{i.cost}}</td>
+        <td>{{i.slots}}</td>
+        <td>{{i.effects}}</td>
+        <td>@for (r of i.requires; track $index) {
+            {{r.name}} {{r.amount}}
+        }</td>
+        <td><img height="100px" src="{{i.image}}"></td>
+    </tr>
+}
+</table>

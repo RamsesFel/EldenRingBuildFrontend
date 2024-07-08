@@ -14,20 +14,13 @@ export interface Datum {
     defence:            Attack[];
     scalesWith:         ScalesWith[];
     requiredAttributes: Attack[];
-    category:           Category | null;
+    category:           string | null;
     weight:             number;
 }
 
 export interface Attack {
     name:   string;
     amount: number | null;
-}
-
-export enum Category {
-    Greatshield = "Greatshield",
-    MediumShield = "Medium Shield",
-    SmallShield = "Small Shield",
-    SmallShields = "Small Shields",
 }
 
 export interface ScalesWith {

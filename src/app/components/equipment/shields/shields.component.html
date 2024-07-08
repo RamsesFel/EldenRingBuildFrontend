@@ -1,1 +1,33 @@
-<p>shields works!</p>
+<input type="text" [(ngModel)]="formShield" placeholder="Search Shield By Name">
+<button (click)="getShieldByName()">Search</button>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Attack</th>
+        <th>Defence</th>
+        <th>Scales With</th>
+        <th>Required Attributes</th>
+        <th>Weight</th>
+        <th>Image</th>
+    </tr>
+@for (s of currentShield.data; track $index) {
+    <tr>
+        <td>{{s.name}}</td>
+        <td>{{s.description}}</td>
+        <td>{{s.category}}</td>
+        <td>{{s.attack}}</td>
+        <td>{{s.defence}}</td>
+        <td>@for (sw of s.scalesWith; track $index) {
+            {{sw.name}} {{sw.scaling}}
+        }</td>
+        <td>@for (ra of s.requiredAttributes; track $index) {
+            {{ra.name}} {{ra.amount}}
+        }</td>
+        <td>{{s.weight}}</td>
+        <td><img height="100px" src="{{s.image}}"></td>
+    </tr>
+}
+</table>
+

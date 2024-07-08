@@ -1,1 +1,28 @@
-<p>classes works!</p>
+<input type="text" [(ngModel)]="formClass" placeholder="Search Class By Name">
+<button (click)="getClassByName()">Search</button>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Stats</th>
+        <th>Image</th>
+    </tr>
+@for (c of currentClass.data; track $index) {
+    <tr>
+        <td>{{c.name}}</td>
+        <td>{{c.description}}</td>
+        <td>
+            {{c.stats.level}} <br>
+            {{c.stats.vigor}} <br>
+            {{c.stats.mind}} <br>
+            {{c.stats.endurance}} <br>
+            {{c.stats.strength}} <br>
+            {{c.stats.dexterity}} <br>
+            {{c.stats.intelligence}} <br>
+            {{c.stats.faith}} <br>
+            {{c.stats.arcane}}
+        </td>
+        <td><img height="100px" src="{{c.image}}"></td>
+    </tr>
+}
+</table>

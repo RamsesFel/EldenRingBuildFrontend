@@ -1,8 +1,5 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-/environments
-environments/
-/environment
-environment/
+
 # Compiled output
 /dist
 /tmp

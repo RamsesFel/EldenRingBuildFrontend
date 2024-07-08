@@ -1,1 +1,37 @@
-<p>armor works!</p>
+<input type="text" [(ngModel)]="formArmor" placeholder="Search Armor By Name">
+<button (click)="getArmorByName()">Search</button>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Damage Negation</th>
+        <th>Resistance</th>
+        <th>Weight</th>
+        <th>Image</th>
+    </tr>
+@for (a of currentArmor.data; track $index) {
+    <tr>
+        <td>{{a.name}}</td>
+        <td>{{a.description}}</td>
+        <td>{{a.category}}</td>
+        <td>@for (dn of a.dmgNegation; track $index) {
+            {{dn.name}} {{dn.amount}}
+        }</td>
+        <td>@for (r of a.resistance; track $index) {
+            {{r.name}} {{r.amount}}
+        }</td>
+        <td>{{a.weight}}</td>
+        <td><img height="100px" src="{{a.image}}"></td>
+    </tr>
+}
+</table>
+
+
+@if (pageCount > 0) {
+    <button class="top" (click)="changePage(-1)" >Previous Page</button>
+}
+@if (pageCount < 3 ) {
+    <button (click)="changePage(1)">Next Page</button>
+}
+
