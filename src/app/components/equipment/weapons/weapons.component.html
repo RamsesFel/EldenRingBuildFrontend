@@ -8,7 +8,29 @@
         <th>Attack</th>
         <th>Image</th>
     </tr>
-@for (w of currentWeapons.data; track $index) {
+@for (w of currentWeapons1.data; track $index) {
+    <tr>
+        <td>{{w.name}}</td>
+        <td>{{w.description}}</td>
+        <td>{{w.category}}</td>
+        <td>@for (a of w.attack; track $index) {
+            {{a.name}} {{a.amount}}
+        }</td>
+        <td><img height="100px" src="{{w.image}}"></td>
+    </tr>
+}
+@for (w of currentWeapons2.data; track $index) {
+    <tr>
+        <td>{{w.name}}</td>
+        <td>{{w.description}}</td>
+        <td>{{w.category}}</td>
+        <td>@for (a of w.attack; track $index) {
+            {{a.name}} {{a.amount}}
+        }</td>
+        <td><img height="100px" src="{{w.image}}"></td>
+    </tr>
+}
+@for (w of currentWeapons3.data; track $index) {
     <tr>
         <td>{{w.name}}</td>
         <td>{{w.description}}</td>
@@ -20,6 +42,7 @@
     </tr>
 }
 </table>
+
 
 
 @if (pageCount > 0) {

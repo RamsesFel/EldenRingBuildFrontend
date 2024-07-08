@@ -13,7 +13,9 @@ import { FormsModule } from '@angular/forms';
 export class WeaponsComponent {
   constructor(private eldenringService:EldenRingService){};
 
-  currentWeapons:WeaponsModel = {} as WeaponsModel;
+  currentWeapons1:WeaponsModel = {} as WeaponsModel;
+  currentWeapons2:WeaponsModel = {} as WeaponsModel;
+  currentWeapons3:WeaponsModel = {} as WeaponsModel;
   formWeapon:string = "";
   pageCount:number = 0;
 
@@ -23,15 +25,20 @@ export class WeaponsComponent {
 
   getWeaponByName(){
     this.eldenringService.getWeaponByName(this.formWeapon).subscribe((response:WeaponsModel) => {
-      this.currentWeapons = response;
+      this.currentWeapons1 = response;
       console.log(response);
     })
   }
 
   getWeaponList(){
-    this.eldenringService.getWeaponList(this.pageCount).subscribe((response:WeaponsModel)=>{
-      this.currentWeapons = response;
-      console.log(response);
+    this.eldenringService.getWeaponList(1).subscribe((response:WeaponsModel)=>{
+      this.currentWeapons1 = response;
+    })
+    this.eldenringService.getWeaponList(2).subscribe((response:WeaponsModel)=>{
+      this.currentWeapons2 = response;
+    })
+    this.eldenringService.getWeaponList(3).subscribe((response:WeaponsModel)=>{
+      this.currentWeapons3 = response;
     })
   }
 
