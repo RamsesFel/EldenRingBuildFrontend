@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { EldenRingService } from '../../../services/elden-ring.service';
 import { ShieldsModel } from '../../../models/shields';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +15,12 @@ export class ShieldsComponent {
 
   currentShield:ShieldsModel = {} as ShieldsModel;
   formShield:string = "";
+
+  @Output() addShieldEvent = new EventEmitter<string>();
+
+  addShield(id:string){
+    this.addShieldEvent.emit(id);
+  }
 
   ngOnInit(){
     this.getShieldsList();

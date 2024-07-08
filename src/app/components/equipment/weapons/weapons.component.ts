@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { EldenRingService } from '../../../services/elden-ring.service';
 import { WeaponsModel } from '../../../models/weapons';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +18,8 @@ export class WeaponsComponent {
   currentWeapons3:WeaponsModel = {} as WeaponsModel;
   formWeapon:string = "";
   pageCount:number = 0;
+  @Output() addWeaponEvent = new EventEmitter<string>();
+
 
   ngOnInit(){
     this.getWeaponList();
@@ -40,6 +42,10 @@ export class WeaponsComponent {
     this.eldenringService.getWeaponList(3).subscribe((response:WeaponsModel)=>{
       this.currentWeapons3 = response;
     })
+  }
+
+  addWeapon(id:string){
+    this.addWeaponEvent.emit(id);
   }
 
   changePage(num:number){

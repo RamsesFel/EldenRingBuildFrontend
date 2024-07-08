@@ -7,6 +7,7 @@
         <th>Category</th>
         <th>Attack</th>
         <th>Image</th>
+        <th></th>
     </tr>
 @for (w of currentWeapons1.data; track $index) {
     <tr>
@@ -17,6 +18,7 @@
             {{a.name}} {{a.amount}}
         }</td>
         <td><img height="100px" src="{{w.image}}"></td>
+        <td><button (click)="addWeapon(w.id)">Add</button></td>
     </tr>
 }
 @for (w of currentWeapons2.data; track $index) {
@@ -28,6 +30,7 @@
             {{a.name}} {{a.amount}}
         }</td>
         <td><img height="100px" src="{{w.image}}"></td>
+        <td><button (click)="addWeapon(w.id)">Add</button></td>
     </tr>
 }
 @for (w of currentWeapons3.data; track $index) {
@@ -39,6 +42,7 @@
             {{a.name}} {{a.amount}}
         }</td>
         <td><img height="100px" src="{{w.image}}"></td>
+        <td><button (click)="addWeapon(w.id)">Add</button></td>
     </tr>
 }
 </table>

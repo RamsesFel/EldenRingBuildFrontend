@@ -7,6 +7,7 @@ import { IncantationsComponent } from '../equipment/incantations/incantations.co
 import { ShieldsComponent } from '../equipment/shields/shields.component';
 import { SorceriesComponent } from '../equipment/sorceries/sorceries.component';
 import { TalismansComponent } from '../equipment/talismans/talismans.component';
+import { Build } from '../../models/build';
 
 @Component({
   selector: 'app-create',
@@ -18,9 +19,15 @@ import { TalismansComponent } from '../equipment/talismans/talismans.component';
 export class CreateComponent {
 
   toggleList:number = 0;
+  currentBuild:Build = {} as Build;
 
   showList(num:number){
     this.toggleList = num;
+  }
+
+  addtoBuild(item:string){
+    this.currentBuild.weapon1 = item;
+    console.log(this.currentBuild);
   }
 
 }

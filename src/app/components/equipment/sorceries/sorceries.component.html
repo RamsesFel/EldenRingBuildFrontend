@@ -10,6 +10,7 @@
         <th>Effects</th>
         <th>Requires</th>
         <th>Image</th>
+        <th></th>
     </tr>
 @for (t of currentSorcery.data; track $index) {
     <tr>
@@ -23,6 +24,7 @@
             {{r.name}} {{r.amount}}
         }</td>
         <td><img height="100px" src="{{t.image}}"></td>
+        <td><button (click)="addSorcery(t.id)">Add</button></td>
     </tr>
 }
 </table>

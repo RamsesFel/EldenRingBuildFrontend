@@ -11,6 +11,7 @@
         <th>Required Attributes</th>
         <th>Weight</th>
         <th>Image</th>
+        <th></th>
     </tr>
 @for (s of currentShield.data; track $index) {
     <tr>
@@ -31,6 +32,8 @@
         }</td>
         <td>{{s.weight}}</td>
         <td><img height="100px" src="{{s.image}}"></td>
+        <td><button (click)="addShield(s.id)">Add</button></td>
+
     </tr>
 }
 </table>

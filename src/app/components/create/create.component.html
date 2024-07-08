@@ -1,49 +1,15 @@
-<table>
-    <br>
-    <button (click)="showList(4)">Classes</button>
-    <br>
-    <tr>
-        <button (click)="showList(1)">Weapon 1</button>
-        <button (click)="showList(1)">weapon2</button>
-        <button (click)="showList(7)">Shields</button>
-        <button (click)="showList(3)">Ashes Of War</button>
-    </tr>
-    <br>
-    <tr>
-        <button (click)="showList(1)">armorHead</button>
-        <button (click)="showList(1)">armorBody</button>
-        <button (click)="showList(1)">armorHands</button>
-        <button (click)="showList(1)">armorLegs</button>
-    </tr>
-    <br>
+<button (click)="showList(4)">Classes</button>
+<button (click)="showList(1)">Weapons</button>
+<button (click)="showList(3)">Ashes Of War</button>
+<button (click)="showList(2)">Armor</button>
+<button (click)="showList(8)">Talismans</button>
+<button (click)="showList(5)">Sorceries</button>
+<button (click)="showList(6)">Incantations</button>
 
-<br>
-
-<tr>
-    <button (click)="showList(8)">Talismans</button>
-    <button (click)="showList(1)">talisman1</button>
-    <button (click)="showList(1)">talisman2</button>
-    <button (click)="showList(1)">talisman4</button>
-</tr>
-<br>
-
-<tr>
-    <button (click)="showList(1)">spell1</button>
-    <button (click)="showList(1)">spell2</button>
-    <button (click)="showList(1)">spell4</button>
-    <button (click)="showList(1)">spell6</button>
-    <button (click)="showList(1)">spell7</button>
-    <button (click)="showList(1)">spell8</button>
-    <button (click)="showList(1)">spell9</button>
-    <button (click)="showList(1)">spell10</button>
-    <button (click)="showList(1)">spell11</button>
-    <button (click)="showList(1)">spell12</button>
-</tr>
-</table>
 
 
 @switch (this.toggleList) { @case (1) {
-<app-weapons></app-weapons>
+<app-weapons (addWeaponEvent)="addtoBuild($event)"></app-weapons>
 <app-shields></app-shields>
 } @case (2) {
 <app-armor></app-armor>
@@ -60,5 +26,4 @@
 } @case (8) {
 <app-talismans></app-talismans>
 }
-
 }

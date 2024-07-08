@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { EldenRingService } from '../../../services/elden-ring.service';
 import { AshesOfWarModel } from '../../../models/ashes-of-war';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +15,12 @@ export class AshesOfWarComponent {
 
   currentAshOfWar:AshesOfWarModel = {} as AshesOfWarModel;
   formAshOfWar:string = "";
+
+  @Output() addAshOfWarEvent = new EventEmitter<string>();
+
+  addAshOfWar(id:string){
+    this.addAshOfWarEvent.emit(id);
+  }
 
   ngOnInit(){
     this.getAshesOfWarList();

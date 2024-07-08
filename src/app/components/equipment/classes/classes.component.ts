@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EldenRingService } from '../../../services/elden-ring.service';
 import { ClassesModel } from '../../../models/classes';
@@ -15,6 +15,13 @@ export class ClassesComponent {
 
   currentClass:ClassesModel = {} as ClassesModel;
   formClass:string = "";
+  
+  @Output() addClassEvent = new EventEmitter<string>();
+
+  addClass(id:string){
+    this.addClassEvent.emit(id);
+  }
+
 
   ngOnInit(){
     this.getClassesList();
