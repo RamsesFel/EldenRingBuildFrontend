@@ -7,6 +7,7 @@
         <th>Affinity</th>
         <th>Skill</th>
         <th>Image</th>
+        <th></th>
     </tr>
 @for (a of currentAshOfWar.data; track $index) {
     <tr>
@@ -15,6 +16,7 @@
         <td>{{a.affinity}}</td>
         <td>{{a.skill}}</td>
         <td><img height="100px" src="{{a.image}}"></td>
+        <td><button>Add to Build</button></td>
     </tr>
 }
 </table>

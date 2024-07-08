@@ -8,6 +8,8 @@ import { TalismansModel } from './talismans';
 import { WeaponsModel } from './weapons';
 
 export interface Build {
+  id: number;
+  userId: string;
   buildName: string;
   weapon1: string;
   weapon2: string;

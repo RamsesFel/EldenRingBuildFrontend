@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { EldenRingService } from '../../../services/elden-ring.service';
 import { AshesOfWarModel } from '../../../models/ashes-of-war';
 import { FormsModule } from '@angular/forms';
+import { Build } from '../../../models/build';
 
 @Component({
   selector: 'app-ashes-of-war',
@@ -15,7 +16,7 @@ export class AshesOfWarComponent {
 
   currentAshOfWar:AshesOfWarModel = {} as AshesOfWarModel;
   formAshOfWar:string = "";
-
+  
   ngOnInit(){
     this.getAshesOfWarList();
   }
