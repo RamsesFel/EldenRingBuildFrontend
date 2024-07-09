@@ -6,7 +6,6 @@ import { ArmorModel } from '../models/armors';
 import { AshesOfWarModel } from '../models/ashes-of-war';
 import { ClassesModel } from '../models/classes';
 import { IncantationsModel } from '../models/incantations';
-import { ShieldsModel } from '../models/shields';
 import { SorceriesModel } from '../models/sorceries';
 import { TalismansModel } from '../models/talismans';
 
@@ -21,7 +20,7 @@ export class EldenRingService {
     return this.http.get<ArmorModel>(`https://eldenring.fanapis.com/api/armors?limit=100&page=${pageNum}`);
   }
   getArmorByName(name:string):Observable<ArmorModel>{
-    return this.http.get<ArmorModel>(`https://eldenring.fanapis.com/api/armors?name=${name}`);
+    return this.http.get<ArmorModel>(`https://eldenring.fanapis.com/api/armors?limit=100&name=${name}`);
   }
 
   //ashes of war
@@ -29,7 +28,7 @@ export class EldenRingService {
     return this.http.get<AshesOfWarModel>(`https://eldenring.fanapis.com/api/ashes?limit=100`);
   }
   getAshOfWarByName(name:string):Observable<AshesOfWarModel> {
-    return this.http.get<AshesOfWarModel>(`https://eldenring.fanapis.com/api/ashes?name=${name}`);
+    return this.http.get<AshesOfWarModel>(`https://eldenring.fanapis.com/api/ashes?limit=100&name=${name}`);
   }
 
   //classes
@@ -37,7 +36,7 @@ export class EldenRingService {
     return this.http.get<ClassesModel>(`https://eldenring.fanapis.com/api/classes?limit=100`);
   }
   getClassByName(name:string):Observable<ClassesModel> {
-    return this.http.get<ClassesModel>(`https://eldenring.fanapis.com/api/classes?name=${name}`);
+    return this.http.get<ClassesModel>(`https://eldenring.fanapis.com/api/classes?limit=100&name=${name}`);
   }
 
   //incantations
@@ -45,15 +44,7 @@ export class EldenRingService {
     return this.http.get<IncantationsModel>(`https://eldenring.fanapis.com/api/incantations?limit=100`);
   }
   getIncantationByName(name:string):Observable<IncantationsModel> {
-    return this.http.get<IncantationsModel>(`https://eldenring.fanapis.com/api/incantations?name=${name}`);
-  }
-
-  //shields
-  getShieldsList():Observable<ShieldsModel> {
-    return this.http.get<ShieldsModel>(`https://eldenring.fanapis.com/api/shields?limit=100`);
-  }
-  getShieldByName(name:string):Observable<ShieldsModel> {
-    return this.http.get<ShieldsModel>(`https://eldenring.fanapis.com/api/shields?name=${name}`);
+    return this.http.get<IncantationsModel>(`https://eldenring.fanapis.com/api/incantations?limit=100&name=${name}`);
   }
 
   //sorceries
@@ -61,7 +52,7 @@ export class EldenRingService {
     return this.http.get<SorceriesModel>(`https://eldenring.fanapis.com/api/sorceries?limit=100`);
   }
   getSorceryByName(name:string):Observable<SorceriesModel> {
-    return this.http.get<SorceriesModel>(`https://eldenring.fanapis.com/api/sorceries?name=${name}`);
+    return this.http.get<SorceriesModel>(`https://eldenring.fanapis.com/api/sorceries?limit=100&name=${name}`);
   }
 
   //talismans
@@ -69,7 +60,7 @@ export class EldenRingService {
     return this.http.get<TalismansModel>(`https://eldenring.fanapis.com/api/talismans?limit=100`);
   }
   getTalismanByName(name:string):Observable<TalismansModel> {
-    return this.http.get<TalismansModel>(`https://eldenring.fanapis.com/api/talismans?name=${name}`);
+    return this.http.get<TalismansModel>(`https://eldenring.fanapis.com/api/talismans?limit=100&name=${name}`);
   }
 
   //weapons
@@ -77,6 +68,11 @@ export class EldenRingService {
     return this.http.get<WeaponsModel>(`https://eldenring.fanapis.com/api/weapons?limit=100&page=${pageNum}`);
   }
   getWeaponByName(name:string):Observable<WeaponsModel> {
-    return this.http.get<WeaponsModel>(`https://eldenring.fanapis.com/api/weapons?name=${name}`);
+    return this.http.get<WeaponsModel>(`https://eldenring.fanapis.com/api/weapons?limit=100&name=${name}`);
   }
-}
+  getShieldsList():Observable<WeaponsModel> {
+    return this.http.get<WeaponsModel>(`https://eldenring.fanapis.com/api/shields?limit=100`);
+  }
+  getShieldByName(name:string):Observable<WeaponsModel> {
+    return this.http.get<WeaponsModel>(`https://eldenring.fanapis.com/api/shields?limit=100&name=${name}`);
+  }}

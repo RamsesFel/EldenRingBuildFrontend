@@ -1,12 +1,3 @@
-import { ArmorModel } from './armors';
-import { AshesOfWarModel } from './ashes-of-war';
-import { ClassesModel } from './classes';
-import { IncantationsModel } from './incantations';
-import { ShieldsModel } from './shields';
-import { SorceriesModel } from './sorceries';
-import { TalismansModel } from './talismans';
-import { WeaponsModel } from './weapons';
-
 export interface Build {
   id: number;
   userId: string;
@@ -18,7 +9,6 @@ export interface Build {
   armorHands: string;
   armorLegs: string;
   ashOfWar: string;
-  shield: string;
   talisman1: string;
   talisman2: string;
   talisman3: string;

@@ -2,15 +2,15 @@
 <button (click)="showList(1)">Weapons</button>
 <button (click)="showList(3)">Ashes Of War</button>
 <button (click)="showList(2)">Armor</button>
-<button (click)="showList(8)">Talismans</button>
+<button (click)="showList(7)">Talismans</button>
 <button (click)="showList(5)">Sorceries</button>
 <button (click)="showList(6)">Incantations</button>
 
 
 
-@switch (this.toggleList) { @case (1) {
+@switch (this.toggleList) 
+{ @case (1) {
 <app-weapons (addWeaponEvent)="addtoBuild($event)"></app-weapons>
-<app-shields></app-shields>
 } @case (2) {
 <app-armor></app-armor>
 } @case (3) {
@@ -22,8 +22,6 @@
 } @case (6) {
 <app-sorceries></app-sorceries>
 } @case (7) {
-<app-shields></app-shields>
-} @case (8) {
 <app-talismans></app-talismans>
 }
 }

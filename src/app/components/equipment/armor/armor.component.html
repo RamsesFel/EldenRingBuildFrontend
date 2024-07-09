@@ -11,29 +11,42 @@
         <th>Image</th>
         <th></th>
     </tr>
-@for (a of currentArmor.data; track $index) {
+    @if (currentArmor.data != null) {
+    @for (a of currentArmor.data; track $index) {
     <tr>
         <td>{{a.name}}</td>
         <td>{{a.description}}</td>
         <td>{{a.category}}</td>
         <td>@for (dn of a.dmgNegation; track $index) {
             {{dn.name}} {{dn.amount}}
-        }</td>
+            }</td>
         <td>@for (r of a.resistance; track $index) {
             {{r.name}} {{r.amount}}
-        }</td>
+            }</td>
         <td>{{a.weight}}</td>
         <td><img height="100px" src="{{a.image}}"></td>
         <td><button (click)="addArmor(a.id)">Add</button></td>
     </tr>
-}
+    }
+    }@else {
+    @for (armor of armorList; track $index) {
+    @for(a of armor.data; track $index){
+    <tr>
+        <td>{{a.name}}</td>
+        <td>{{a.description}}</td>
+        <td>{{a.category}}</td>
+        <td>@for (dn of a.dmgNegation; track $index) {
+            {{dn.name}} {{dn.amount}}
+            }</td>
+        <td>@for (r of a.resistance; track $index) {
+            {{r.name}} {{r.amount}}
+            }</td>
+        <td>{{a.weight}}</td>
+        <td><img height="100px" src="{{a.image}}"></td>
+        <td><button (click)="addArmor(a.id)">Add</button></td>
+    </tr>
+    }
+    }
+    }
+
 </table>
-
-
-@if (pageCount > 0) {
-    <button class="top" (click)="changePage(-1)" >Previous Page</button>
-}
-@if (pageCount < 6 ) {
-    <button (click)="changePage(1)">Next Page</button>
-}
-

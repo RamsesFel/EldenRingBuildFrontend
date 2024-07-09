@@ -14,6 +14,9 @@ export class ArmorComponent {
   constructor(private eldenringService:EldenRingService){};
 
   currentArmor:ArmorModel = {} as ArmorModel;
+  armorList:ArmorModel[] = [];
+
+
   formArmor:string = "";
   pageCount: number = 0;
 
@@ -35,10 +38,12 @@ export class ArmorComponent {
   }
 
   getArmorList(){
-    this.eldenringService.getArmorList(this.pageCount).subscribe((response:ArmorModel)=>{
-      this.currentArmor = response;
-      console.log(response);
-    })
+    for(let i = 0; i < 6; i++){
+      this.eldenringService.getArmorList(i).subscribe((response:ArmorModel)=>{
+        this.armorList.push(response);
+        console.log(this.armorList)
+      })
+    }
   }
   
   changePage(num:number){
