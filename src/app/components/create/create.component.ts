@@ -3,20 +3,22 @@ import { WeaponsComponent } from '../equipment/weapons/weapons.component';
 import { ArmorComponent } from '../equipment/armor/armor.component';
 import { AshesOfWarComponent } from '../equipment/ashes-of-war/ashes-of-war.component';
 import { ClassesComponent } from '../equipment/classes/classes.component';
-import { IncantationsComponent } from '../equipment/incantations/incantations.component';
-import { SorceriesComponent } from '../equipment/sorceries/sorceries.component';
 import { TalismansComponent } from '../equipment/talismans/talismans.component';
 import { Build } from '../../models/build';
+import { DatabaseService } from '../../services/database.service';
+import { SpellsComponent } from '../equipment/spells/spells.component';
+
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [WeaponsComponent,ArmorComponent,AshesOfWarComponent,ClassesComponent,IncantationsComponent,SorceriesComponent,TalismansComponent],
+  imports: [WeaponsComponent,ArmorComponent,AshesOfWarComponent,ClassesComponent,TalismansComponent, SpellsComponent],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css'
 })
 export class CreateComponent {
-
+  constructor(private _databaseService: DatabaseService) {}
+  
   toggleList:number = 0;
   currentBuild:Build = {} as Build;  
   buildWeapons: string [] = []; 
@@ -41,68 +43,58 @@ export class CreateComponent {
       {
       if (this.buildWeapons.length < 2)
       {
-       this.buildWeapons.push(item)
+       this.buildWeapons.push(item);
       }
-      break
+      console.log(this.buildWeapons);
+      break;
       }
-
-      
       case (2):
       {
         if (this.buildArmor.length < 4 && !this.buildArmor.includes(item))
           {
-           this.buildArmor.push(item)
+           this.buildArmor.push(item);
            
           }
-          console.log(this.buildArmor)
-          break
+          console.log(this.buildArmor);
+          break;
       }
       case (3):
       {
         if(this.buildAOF != "")
         {
-          this.buildAOF = item
+          this.buildAOF = item;
         }
-        break
+        console.log(this.buildAOF);
+        break;
         
       }
       case (4):
       {
         if(this.buildClass != "")
           {
-            this.buildClass = item
+            this.buildClass = item;
           }
-          break
+          console.log(this.buildClass);
+          break;
       }
       case (5):
       {
         if(this.buildSpells.length < 12  && !this.buildSpells.includes(item))
           {
-            this.buildSpells.push(item)
+            this.buildSpells.push(item);
           } 
-          break
+          console.log(this.buildSpells);
+          break;
       }
-
       case (6):
-      {
-        if(this.buildSpells.length < 12  && !this.buildSpells.includes(item))
-          {
-            this.buildSpells.push(item)
-          }
-          break
-      }
-      case (7):
       {
         if(this.buildTalisman.length < 4  && !this.buildTalisman.includes(item))
           {
-            this.buildTalisman.push(item)
+            this.buildTalisman.push(item);
           }
-          console.log(this.buildTalisman)
-        break
+          console.log(this.buildTalisman);
+        break;
       }
-
-    }
-    
+    }    
   }
-
 }

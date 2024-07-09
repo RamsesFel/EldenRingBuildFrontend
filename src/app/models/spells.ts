@@ -1,4 +1,4 @@
-export interface IncantationsModel {
+export interface SpellsModel {
     success: boolean;
     count:   number;
     total:   number;
@@ -8,13 +8,13 @@ export interface IncantationsModel {
 export interface Datum {
     id:          string;
     name:        string;
-    image:       null | string;
+    image:       string;
     description: string;
     type:        string;
     cost:        number;
     slots:       number;
-    effects:     null | string;
-    requires:    Require[] | null;
+    effects:     string;
+    requires:    Require[];
 }
 
 export interface Require {

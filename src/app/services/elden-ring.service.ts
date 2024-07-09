@@ -5,8 +5,7 @@ import { WeaponsModel } from '../models/weapons';
 import { ArmorModel } from '../models/armors';
 import { AshesOfWarModel } from '../models/ashes-of-war';
 import { ClassesModel } from '../models/classes';
-import { IncantationsModel } from '../models/incantations';
-import { SorceriesModel } from '../models/sorceries';
+import { SpellsModel } from '../models/spells';
 import { TalismansModel } from '../models/talismans';
 
 @Injectable({
@@ -39,20 +38,20 @@ export class EldenRingService {
     return this.http.get<ClassesModel>(`https://eldenring.fanapis.com/api/classes?limit=100&name=${name}`);
   }
 
-  //incantations
-  getIncantationsList():Observable<IncantationsModel> {
-    return this.http.get<IncantationsModel>(`https://eldenring.fanapis.com/api/incantations?limit=100`);
-  }
-  getIncantationByName(name:string):Observable<IncantationsModel> {
-    return this.http.get<IncantationsModel>(`https://eldenring.fanapis.com/api/incantations?limit=100&name=${name}`);
-  }
+
 
   //sorceries
-  getSorceriesList():Observable<SorceriesModel> {
-    return this.http.get<SorceriesModel>(`https://eldenring.fanapis.com/api/sorceries?limit=100`);
+  getSorceriesList():Observable<SpellsModel> {
+    return this.http.get<SpellsModel>(`https://eldenring.fanapis.com/api/sorceries?limit=100`);
   }
-  getSorceryByName(name:string):Observable<SorceriesModel> {
-    return this.http.get<SorceriesModel>(`https://eldenring.fanapis.com/api/sorceries?limit=100&name=${name}`);
+  getSorceryByName(name:string):Observable<SpellsModel> {
+    return this.http.get<SpellsModel>(`https://eldenring.fanapis.com/api/sorceries?limit=100&name=${name}`);
+  }
+  getIncantationsList():Observable<SpellsModel> {
+    return this.http.get<SpellsModel>(`https://eldenring.fanapis.com/api/incantations?limit=100`);
+  }
+  getIncantationByName(name:string):Observable<SpellsModel> {
+    return this.http.get<SpellsModel>(`https://eldenring.fanapis.com/api/incantations?limit=100&name=${name}`);
   }
 
   //talismans

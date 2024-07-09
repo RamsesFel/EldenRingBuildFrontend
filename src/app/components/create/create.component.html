@@ -2,9 +2,8 @@
 <button (click)="showList(1)">Weapons</button>
 <button (click)="showList(3)">Ashes Of War</button>
 <button (click)="showList(2)">Armor</button>
-<button (click)="showList(7)">Talismans</button>
-<button (click)="showList(5)">Sorceries</button>
-<button (click)="showList(6)">Incantations</button>
+<button (click)="showList(6)">Talismans</button>
+<button (click)="showList(5)">Spells</button>
 
 
 
@@ -18,10 +17,8 @@
 } @case (4) {
 <app-classes (addClassEvent)="addtoBuild($event)"></app-classes>
 } @case (5) {
-<app-incantations (addIncantationEvent)="addtoBuild($event)"></app-incantations>
+<app-spells (addSpellEvent)="addtoBuild($event)"></app-spells>
 } @case (6) {
-<app-sorceries (addSorceryEvent)="addtoBuild($event)"></app-sorceries>
-} @case (7) {
 <app-talismans (addTalismanEvent)="addtoBuild($event)"></app-talismans>
 }
 }

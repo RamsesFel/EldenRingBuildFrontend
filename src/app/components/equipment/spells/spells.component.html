@@ -1,0 +1,41 @@
+<input type="text" [(ngModel)]="formSpell" placeholder="Search Spell By Name">
+<select [(ngModel)]="spellCategory" (select)="getSpellsList()">
+<option value="All">All Spells</option>
+<option value="Incantation">Incantations</option>
+<option value="Sorcer">Sorceries</option>
+</select>
+<button (click)="getSpellByName()">Search</button>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Cost</th>
+        <th>Slots</th>
+        <th>Effects</th>
+        <th>Requires</th>
+        <th>Image</th>
+        <th></th>
+    </tr>
+
+@for (spell of currentSpell; track $index) {
+    @for (s of spell.data; track $index) {       
+        @if (s.type.includes(spellCategory) || spellCategory == "All") {
+            <tr>
+                <td>{{s.name}}</td>
+                <td>{{s.description}}</td>
+                <td>{{s.type}}</td>
+                <td>{{s.cost}}</td>
+                <td>{{s.slots}}</td>
+                <td>{{s.effects}}</td>
+                <td>@for (r of s.requires; track $index) {
+                    {{r.name}} {{r.amount}}
+                }</td>
+                <td><img height="100px" src="{{s.image}}"></td>
+                <td><button (click)="addSpell(s.id)">Add</button></td>
+            </tr>
+        }
+        
+    }
+}
+</table>
