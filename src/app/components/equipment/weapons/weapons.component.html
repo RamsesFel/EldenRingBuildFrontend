@@ -1,4 +1,9 @@
 <input type="text" [(ngModel)]="formWeapon" placeholder="Search Weapon By Name">
+<select (click)="getWeaponTypes()" [(ngModel)]="weaponCategory" (select)="getWeaponList()">
+    @for (t of allWeaponTypes; track $index) {
+        <option value="{{t}}">{{t}}</option>
+    }
+    </select>
 <button (click)="getWeaponByName()">Search</button>
 <table>
     <tr>
@@ -12,33 +17,9 @@
         <th>Image</th>
         <th></th>
     </tr>
-    @if (currentWeapons.length) {
-        @for (weapon of currentWeapons; track $index) {
+        @for (weapon of currentWeapon; track $index) {
             @for (w of weapon.data; track $index) {
-            <tr>
-                <td>{{w.name}}</td>
-                <td>{{w.description}}</td>
-                <td>{{w.category}}</td>
-                <td>@for (a of w.attack; track $index) {
-                    {{a.name}} {{a.amount}}
-                }</td>
-                <td>@for (d of w.defence; track $index) {
-                    {{d.name}} {{d.amount}}
-                }</td>
-                <td>@for (s of w.scalesWith; track $index) {
-                    {{s.name}} {{s.scaling}}
-                }</td>
-                <td>@for (r of w.requiredAttributes; track $index) {
-                    {{r.name}} {{r.amount}}
-                }</td>
-                <td><img height="100px" src="{{w.image}}"></td>
-                <td><button (click)="addWeapon(w.id)">Add</button></td>
-            </tr>
-        }
-        }
-    }@else {
-    @for (weapon of weaponList; track $index) {
-        @for (w of weapon.data; track $index) {
+                @if (w.category.includes(weaponCategory) || weaponCategory == "All") {
             <tr>
                 <td>{{w.name}}</td>
                 <td>{{w.description}}</td>
@@ -60,6 +41,7 @@
             </tr>
         }
     }
-}
+
+    }
 </table>
 

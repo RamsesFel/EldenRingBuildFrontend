@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { EldenRingService } from '../../../services/elden-ring.service';
-import { WeaponsModel } from '../../../models/weapons';
+import { Datum, WeaponsModel } from '../../../models/weapons';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -13,39 +13,56 @@ import { FormsModule } from '@angular/forms';
 export class WeaponsComponent {
   constructor(private eldenringService:EldenRingService){};
 
-  currentWeapons:WeaponsModel[] = [];
-  weaponList:WeaponsModel[] = [];
+  currentWeapon:WeaponsModel[] = [];
   formWeapon:string = "";
+  allWeaponTypes:string[] = [];
+  weaponCategory:string = "All";
   @Output() addWeaponEvent = new EventEmitter<string>();
 
   ngOnInit(){
     this.getWeaponList();
-    console.log(this.currentWeapons)
-    console.log(this.weaponList)
   }
 
   getWeaponByName(){
+    this.currentWeapon = [];
     this.eldenringService.getWeaponByName(this.formWeapon).subscribe((response:WeaponsModel) => {
-      this.currentWeapons.push(response);
+      this.currentWeapon.push(response);
       console.log(response);
     })
     this.eldenringService.getShieldByName(this.formWeapon).subscribe((response:WeaponsModel)=>{
-      this.currentWeapons.push(response);
+      this.currentWeapon.push(response);
     })
   }
 
   getWeaponList(){
-    for (let i = 0; i < 4; i++) {
-      this.eldenringService.getWeaponList(i).subscribe((response:WeaponsModel)=>{
-        this.weaponList.push(response);
+    this.currentWeapon = [];
+    let count = 0;
+      for (count = 0; count < 4; count++) {
+        this.eldenringService.getWeaponList(count).subscribe((response:WeaponsModel)=>{
+          this.currentWeapon.push(response);
+        })
+      }
+      if(count == 4){
+        this.getShieldList();
+      }
+  }
+
+  getShieldList(){
+      this.eldenringService.getShieldsList().subscribe((response:WeaponsModel)=>{
+      this.currentWeapon.push(response);
+      this.getWeaponTypes();
       })
-    }
-    this.eldenringService.getShieldsList().subscribe((response:WeaponsModel)=>{
-      this.weaponList.push(response);
-    })
   }
 
   addWeapon(id:string){
     this.addWeaponEvent.emit(id);
+  }
+
+  getWeaponTypes(){
+    console.log(this.currentWeapon)
+    for (let i = 0; i < this.currentWeapon.length; i++) {
+      this.allWeaponTypes = [...new Set(this.currentWeapon[i].data.map(weapon => weapon.category))]
+    }
+    console.log(this.allWeaponTypes)
   }
 }
