@@ -12,16 +12,17 @@
 { @case (1) {
 <app-weapons (addWeaponEvent)="addtoBuild($event)"></app-weapons>
 } @case (2) {
-<app-armor></app-armor>
+<app-armor (addArmorEvent)="addtoBuild($event)"></app-armor>
 } @case (3) {
-<app-ashes-of-war></app-ashes-of-war>
+<app-ashes-of-war (addAshOfWarEvent)="addtoBuild($event)"></app-ashes-of-war>
 } @case (4) {
-<app-classes></app-classes>
+<app-classes (addClassEvent)="addtoBuild($event)"></app-classes>
 } @case (5) {
-<app-incantations></app-incantations>
+<app-incantations (addIncantationEvent)="addtoBuild($event)"></app-incantations>
 } @case (6) {
-<app-sorceries></app-sorceries>
+<app-sorceries (addSorceryEvent)="addtoBuild($event)"></app-sorceries>
 } @case (7) {
-<app-talismans></app-talismans>
+<app-talismans (addTalismanEvent)="addtoBuild($event)"></app-talismans>
 }
 }
+

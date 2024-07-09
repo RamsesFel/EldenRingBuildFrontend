@@ -18,7 +18,13 @@ import { Build } from '../../models/build';
 export class CreateComponent {
 
   toggleList:number = 0;
-  currentBuild:Build = {} as Build;
+  currentBuild:Build = {} as Build;  
+  buildWeapons: string [] = []; 
+  buildArmor: string [] = []; 
+  buildAOF: string  = ""; 
+  buildTalisman: string [] = [];
+  buildSpells: string [] = [];
+  buildClass: string = "";
 
   showList(num:number){
     this.toggleList = num;
@@ -26,7 +32,77 @@ export class CreateComponent {
 
   addtoBuild(item:string){
     this.currentBuild.weapon1 = item;
-    console.log(this.currentBuild);
+    
+    // console.log(this.currentBuild);
+//THANKS VICTORIA
+    switch(this.toggleList)
+    {
+      case (1):
+      {
+      if (this.buildWeapons.length < 2)
+      {
+       this.buildWeapons.push(item)
+      }
+      break
+      }
+
+      
+      case (2):
+      {
+        if (this.buildArmor.length < 4 && !this.buildArmor.includes(item))
+          {
+           this.buildArmor.push(item)
+           
+          }
+          console.log(this.buildArmor)
+          break
+      }
+      case (3):
+      {
+        if(this.buildAOF != "")
+        {
+          this.buildAOF = item
+        }
+        break
+        
+      }
+      case (4):
+      {
+        if(this.buildClass != "")
+          {
+            this.buildClass = item
+          }
+          break
+      }
+      case (5):
+      {
+        if(this.buildSpells.length < 12  && !this.buildSpells.includes(item))
+          {
+            this.buildSpells.push(item)
+          } 
+          break
+      }
+
+      case (6):
+      {
+        if(this.buildSpells.length < 12  && !this.buildSpells.includes(item))
+          {
+            this.buildSpells.push(item)
+          }
+          break
+      }
+      case (7):
+      {
+        if(this.buildTalisman.length < 4  && !this.buildTalisman.includes(item))
+          {
+            this.buildTalisman.push(item)
+          }
+          console.log(this.buildTalisman)
+        break
+      }
+
+    }
+    
   }
 
 }
