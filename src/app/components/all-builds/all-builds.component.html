@@ -1,0 +1,55 @@
+
+<table>
+    <tr>
+        <th>Build Creator</th>
+        <th>Build Name</th>
+        <th>Armor</th>
+        <th>Ash Of War</th>
+        <th>Class</th>
+        <th>Spells</th>
+        <th>Talismans</th>
+        <th>Weapons</th>
+        <th></th>
+    </tr>
+
+    @for (b of allBuilds; track $index) {
+        <tr>
+            <td>ANONYMOUS USER</td>
+            <td>{{b.buildName}}</td>
+            <td>{{b.armorHead}} <br>
+                {{b.armorBody}} <br>
+                {{b.armorHands}} <br>
+                {{b.armorLegs}} <br>
+            </td>
+            <td>{{b.ashOfWar}}</td>
+            <td>{{b.class}}</td>
+            <td>
+                {{b.spell1}}
+                @if (b.spell2 != null) {<br> {{b.spell2}} <br>} 
+                @if (b.spell3 != null) { {{b.spell3}} <br>} 
+                @if (b.spell4 != null) { {{b.spell4}} <br>} 
+                @if (b.spell5 != null) { {{b.spell5}} <br>}  
+                @if (b.spell6 != null) { {{b.spell6}} <br>} 
+                @if (b.spell7 != null) { {{b.spell7}} <br>} 
+                @if (b.spell8 != null) { {{b.spell8}} <br>} 
+                @if (b.spell9 != null) { {{b.spell9}} <br>} 
+                @if (b.spell10 != null) { {{b.spell10}} <br>}
+                @if (b.spell11 != null) { {{b.spell1}} <br>}
+                @if (b.spell12 != null) { {{b.spell12}} <br>}
+            </td>
+            <td>{{b.talisman1}} 
+                @if (b.talisman2 != null) {<br> {{b.talisman2}} <br>}
+                @if (b.talisman3 != null) { {{b.talisman3}} <br>}
+                @if (b.talisman4 != null) { {{b.talisman4}} <br>}
+            </td>
+            <td>
+                {{b.weapon1}} <br> 
+                {{b.weapon2}}
+            </td>
+            <td><button (click)="addToFavorites(b.id)">Add To Favorites</button></td>
+        </tr>
+        }
+
+
+    
+</table>

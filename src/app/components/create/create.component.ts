@@ -153,14 +153,12 @@ export class CreateComponent {
     this.currentBuild.spell12 = this.buildSpells[11];
     this.currentBuild.class = this.buildClass;
     console.log(this.currentBuild);
-    this._databaseService
-      .addBuild(this.currentBuild)
 
-      .subscribe((Response: Build) =>
-        { let created: Created = {} as Created;
-      created.userId = this.user.id
-      created.buildId = Response.id
-        this._databaseService.addCreated(created).subscribe((Response: Created) => {})
+    this._databaseService.addBuild(this.currentBuild).subscribe((Response: Build) =>{ 
+      let createdBuild: Created = {} as Created;
+      createdBuild.userId = this.user.id;
+      createdBuild.buildId = Response.id;
+        this._databaseService.addCreated(createdBuild).subscribe((Response: Created) => {})
       });
   }
 }
