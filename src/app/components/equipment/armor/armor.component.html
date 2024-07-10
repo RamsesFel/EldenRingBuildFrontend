@@ -1,4 +1,11 @@
 <input type="text" [(ngModel)]="formArmor" placeholder="Search Armor By Name">
+<select [(ngModel)]="armorCategory" (select)="getArmorList()">
+    <option value="All">All Armor</option>
+    <option value="Helm">Helm</option>
+    <option value="Chest">Chest</option>
+    <option value="Gauntlet">Gauntlet</option>
+    <option value="Leg">Legs</option>
+    </select>
 <button (click)="getArmorByName()">Search</button>
 <table>
     <tr>
@@ -13,6 +20,7 @@
     </tr>
     @if (currentArmor.data != null) {
     @for (a of currentArmor.data; track $index) {
+        @if (a.category.includes(armorCategory) || armorCategory == "All") {
     <tr>
         <td>{{a.name}}</td>
         <td>{{a.description}}</td>
@@ -25,12 +33,15 @@
             }</td>
         <td>{{a.weight}}</td>
         <td><img height="100px" src="{{a.image}}"></td>
-        <td><button (click)="addArmor(a.id)">Add</button></td>
+        <td><button (click)="addArmor(a.id, a.category)">Add</button></td>
     </tr>
+}
     }
     }@else {
     @for (armor of armorList; track $index) {
     @for(a of armor.data; track $index){
+        @if (a.category.includes(armorCategory) || armorCategory == "All") {
+
     <tr>
         <td>{{a.name}}</td>
         <td>{{a.description}}</td>
@@ -43,8 +54,9 @@
             }</td>
         <td>{{a.weight}}</td>
         <td><img height="100px" src="{{a.image}}"></td>
-        <td><button (click)="addArmor(a.id)">Add</button></td>
+        <td><button (click)="addArmor(a.id,a.category)">Add</button></td>
     </tr>
+}
     }
     }
     }

@@ -14,8 +14,9 @@ export class WeaponsComponent {
   constructor(private eldenringService:EldenRingService){};
 
   currentWeapon:WeaponsModel[] = [];
+  singleWeapon:WeaponsModel[] = [];
   formWeapon:string = "";
-  allWeaponTypes:string[] = [];
+  allWeaponTypes:string[] = ["All"];
   weaponCategory:string = "All";
   @Output() addWeaponEvent = new EventEmitter<string>();
 
@@ -24,26 +25,24 @@ export class WeaponsComponent {
   }
 
   getWeaponByName(){
-    this.currentWeapon = [];
-    this.eldenringService.getWeaponByName(this.formWeapon).subscribe((response:WeaponsModel) => {
-      this.currentWeapon.push(response);
-      console.log(response);
+      this.eldenringService.getWeaponByName(this.formWeapon).subscribe((response:WeaponsModel) => {
+      this.singleWeapon.push(response);
+      this.eldenringService.getShieldByName(this.formWeapon).subscribe((response:WeaponsModel)=>{
+      this.singleWeapon.push(response);
+      console.log(this.singleWeapon);
     })
-    this.eldenringService.getShieldByName(this.formWeapon).subscribe((response:WeaponsModel)=>{
-      this.currentWeapon.push(response);
-    })
+  }) 
   }
 
   getWeaponList(){
-    this.currentWeapon = [];
-    let count = 0;
-      for (count = 0; count < 4; count++) {
-        this.eldenringService.getWeaponList(count).subscribe((response:WeaponsModel)=>{
+    this.resetAll();
+      for (let i = 0; i < 4; i++) {
+        this.eldenringService.getWeaponList(i).subscribe((response:WeaponsModel)=>{
           this.currentWeapon.push(response);
+          if(i == 3){
+          this.getShieldList();
+          }
         })
-      }
-      if(count == 4){
-        this.getShieldList();
       }
   }
 
@@ -58,11 +57,27 @@ export class WeaponsComponent {
     this.addWeaponEvent.emit(id);
   }
 
+  searchType(){
+    if(this.formWeapon == ""){
+      this.getWeaponList();
+    }else{
+      this.getWeaponByName();
+    }
+  }
+
   getWeaponTypes(){
     console.log(this.currentWeapon)
     for (let i = 0; i < this.currentWeapon.length; i++) {
-      this.allWeaponTypes = [...new Set(this.currentWeapon[i].data.map(weapon => weapon.category))]
-    }
-    console.log(this.allWeaponTypes)
+      let allWeaponTypes = [...new Set(this.currentWeapon[i].data.map((x)=>x.category))];
+      this.allWeaponTypes.push(...allWeaponTypes);
   }
+  console.log(this.allWeaponTypes)
+  this.allWeaponTypes = [...new Set(this.allWeaponTypes)];
+}
+
+resetAll(){
+  this.singleWeapon = [];
+  this.currentWeapon = [];
+  this.allWeaponTypes = ["All"];
+}
 }

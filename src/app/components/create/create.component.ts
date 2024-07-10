@@ -7,17 +7,19 @@ import { TalismansComponent } from '../equipment/talismans/talismans.component';
 import { Build } from '../../models/build';
 import { DatabaseService } from '../../services/database.service';
 import { SpellsComponent } from '../equipment/spells/spells.component';
+import { FormsModule } from '@angular/forms';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [WeaponsComponent,ArmorComponent,AshesOfWarComponent,ClassesComponent,TalismansComponent, SpellsComponent],
+  imports: [WeaponsComponent,ArmorComponent,AshesOfWarComponent,ClassesComponent,TalismansComponent, SpellsComponent, FormsModule],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css'
 })
 export class CreateComponent {
-  constructor(private _databaseService: DatabaseService) {}
+  constructor(private _databaseService: DatabaseService, private socialAuthServiceConfig:SocialAuthService) {}
   
   toggleList:number = 0;
   currentBuild:Build = {} as Build;  
@@ -27,14 +29,35 @@ export class CreateComponent {
   buildTalisman: string [] = [];
   buildSpells: string [] = [];
   buildClass: string = "";
+  buildName:string = "";
+
+  user: SocialUser = {} as SocialUser;
+  loggedIn: boolean = false;
+ 
+  ngOnInit() {
+    //authState is a custom observable that will run again any time changes are noticed.
+    this.socialAuthServiceConfig.authState.subscribe((userResponse: SocialUser) => {
+      this.user = userResponse;
+      //if login fails, it will return null.
+      this.loggedIn = (userResponse != null);
+    });
+  }
 
   showList(num:number){
     this.toggleList = num;
   }
 
-  addtoBuild(item:string){
-    this.currentBuild.weapon1 = item;
-    
+  addArmortoBuild(item:string[]){
+    console.log(item[0])
+    if (this.buildArmor.length < 8 && !this.buildArmor.includes(item[0]) && !this.buildArmor.includes(item[1]))
+      {
+       this.buildArmor = this.buildArmor.concat([...item]);
+      }
+      console.log(this.buildArmor.indexOf("Chest") - 1);
+      console.log(this.buildArmor);
+  }
+
+  addtoBuild(item:string){    
     // console.log(this.currentBuild);
 //THANKS VICTORIA
     switch(this.toggleList)
@@ -48,19 +71,9 @@ export class CreateComponent {
       console.log(this.buildWeapons);
       break;
       }
-      case (2):
-      {
-        if (this.buildArmor.length < 4 && !this.buildArmor.includes(item))
-          {
-           this.buildArmor.push(item);
-           
-          }
-          console.log(this.buildArmor);
-          break;
-      }
       case (3):
       {
-        if(this.buildAOF != "")
+        if(this.buildAOF == "")
         {
           this.buildAOF = item;
         }
@@ -70,7 +83,7 @@ export class CreateComponent {
       }
       case (4):
       {
-        if(this.buildClass != "")
+        if(this.buildClass == "")
           {
             this.buildClass = item;
           }
@@ -96,5 +109,35 @@ export class CreateComponent {
         break;
       }
     }    
+  }
+
+  createBuild(){
+    this.currentBuild.userId = this.user.id;
+    this.currentBuild.buildName = this.buildName;
+    this.currentBuild.weapon1 = this.buildWeapons[0];
+    this.currentBuild.weapon2 = this.buildWeapons[1];
+    this.currentBuild.armorHead =this.buildArmor[this.buildArmor.indexOf("Helm") - 1];
+    this.currentBuild.armorBody =this.buildArmor[this.buildArmor.indexOf("Chest Armor") - 1];
+    this.currentBuild.armorHands =this.buildArmor[this.buildArmor.indexOf("Gauntlets") - 1];
+    this.currentBuild.armorLegs =this.buildArmor[this.buildArmor.indexOf("Leg Armor") - 1];
+    this.currentBuild.ashOfWar = this.buildAOF;
+    this.currentBuild.talisman1 = this.buildTalisman[0];
+    this.currentBuild.talisman2 = this.buildTalisman[1];
+    this.currentBuild.talisman3 = this.buildTalisman[2];
+    this.currentBuild.talisman4 = this.buildTalisman[3];
+    this.currentBuild.spell1 = this.buildSpells[0];
+    this.currentBuild.spell2 = this.buildSpells[1];
+    this.currentBuild.spell3 = this.buildSpells[2];
+    this.currentBuild.spell4 = this.buildSpells[3];
+    this.currentBuild.spell5 = this.buildSpells[4];
+    this.currentBuild.spell6 = this.buildSpells[5];
+    this.currentBuild.spell7 = this.buildSpells[6];
+    this.currentBuild.spell8 = this.buildSpells[7];
+    this.currentBuild.spell9 = this.buildSpells[8];
+    this.currentBuild.spell10 = this.buildSpells[9];
+    this.currentBuild.spell11 = this.buildSpells[10];
+    this.currentBuild.spell12 = this.buildSpells[11];
+    this.currentBuild.class = this.buildClass;
+    console.log(this.currentBuild);
   }
 }

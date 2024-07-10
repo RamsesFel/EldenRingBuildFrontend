@@ -15,15 +15,13 @@ export class ArmorComponent {
 
   currentArmor:ArmorModel = {} as ArmorModel;
   armorList:ArmorModel[] = [];
-
-
   formArmor:string = "";
-  pageCount: number = 0;
+  armorCategory:string = "All";
 
-  @Output() addArmorEvent = new EventEmitter<string>();
+  @Output() addArmorEvent = new EventEmitter<string[]>();
 
-  addArmor(id:string){
-    this.addArmorEvent.emit(id);
+  addArmor(id:string, category:string){
+    this.addArmorEvent.emit([id,category]);
   }
 
   ngOnInit(){
@@ -46,9 +44,4 @@ export class ArmorComponent {
     }
   }
   
-  changePage(num:number){
-    this.pageCount += num;
-    this.getArmorList();
-    window.scroll(0,0);
-  }
 }
