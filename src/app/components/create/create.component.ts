@@ -9,117 +9,131 @@ import { DatabaseService } from '../../services/database.service';
 import { SpellsComponent } from '../equipment/spells/spells.component';
 import { FormsModule } from '@angular/forms';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-
+import {RouterLink} from '@angular/router';
+import { Created } from '../../models/created';
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [WeaponsComponent,ArmorComponent,AshesOfWarComponent,ClassesComponent,TalismansComponent, SpellsComponent, FormsModule],
+  imports: [
+    WeaponsComponent,
+    ArmorComponent,
+    AshesOfWarComponent,
+    ClassesComponent,
+    TalismansComponent,
+    SpellsComponent,
+    FormsModule,
+    RouterLink,
+  ],
   templateUrl: './create.component.html',
-  styleUrl: './create.component.css'
+  styleUrl: './create.component.css',
 })
 export class CreateComponent {
-  constructor(private _databaseService: DatabaseService, private socialAuthServiceConfig:SocialAuthService) {}
-  
-  toggleList:number = 0;
-  currentBuild:Build = {} as Build;  
-  buildWeapons: string [] = []; 
-  buildArmor: string [] = []; 
-  buildAOF: string  = ""; 
-  buildTalisman: string [] = [];
-  buildSpells: string [] = [];
-  buildClass: string = "";
-  buildName:string = "";
+  constructor(
+    private _databaseService: DatabaseService,
+    private socialAuthServiceConfig: SocialAuthService
+  ) {}
+
+  toggleList: number = 0;
+  currentBuild: Build = {} as Build;
+  buildWeapons: string[] = [];
+  buildArmor: string[] = [];
+  buildAOF: string = '';
+  buildTalisman: string[] = [];
+  buildSpells: string[] = [];
+  buildClass: string = '';
+  buildName: string = '';
 
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
- 
+
   ngOnInit() {
     //authState is a custom observable that will run again any time changes are noticed.
-    this.socialAuthServiceConfig.authState.subscribe((userResponse: SocialUser) => {
-      this.user = userResponse;
-      //if login fails, it will return null.
-      this.loggedIn = (userResponse != null);
-    });
+    this.socialAuthServiceConfig.authState.subscribe(
+      (userResponse: SocialUser) => {
+        this.user = userResponse;
+        //if login fails, it will return null.
+        this.loggedIn = userResponse != null;
+      }
+    );
   }
 
-  showList(num:number){
+  showList(num: number) {
     this.toggleList = num;
   }
 
-  addArmortoBuild(item:string[]){
-    console.log(item[0])
-    if (this.buildArmor.length < 8 && !this.buildArmor.includes(item[0]) && !this.buildArmor.includes(item[1]))
-      {
-       this.buildArmor = this.buildArmor.concat([...item]);
-      }
-      console.log(this.buildArmor.indexOf("Chest") - 1);
-      console.log(this.buildArmor);
+  addArmortoBuild(item: string[]) {
+    console.log(item[0]);
+    if (
+      this.buildArmor.length < 8 &&
+      !this.buildArmor.includes(item[0]) &&
+      !this.buildArmor.includes(item[1])
+    ) {
+      this.buildArmor = this.buildArmor.concat([...item]);
+    }
+    console.log(this.buildArmor.indexOf('Chest') - 1);
+    console.log(this.buildArmor);
   }
+  GetAllBuilds() {}
 
-  addtoBuild(item:string){    
+  addtoBuild(item: string) {
     // console.log(this.currentBuild);
-//THANKS VICTORIA
-    switch(this.toggleList)
-    {
-      case (1):
-      {
-      if (this.buildWeapons.length < 2)
-      {
-       this.buildWeapons.push(item);
+    //THANKS VICTORIA
+    switch (this.toggleList) {
+      case 1: {
+        if (this.buildWeapons.length < 2) {
+          this.buildWeapons.push(item);
+        }
+        console.log(this.buildWeapons);
+        break;
       }
-      console.log(this.buildWeapons);
-      break;
-      }
-      case (3):
-      {
-        if(this.buildAOF == "")
-        {
+      case 3: {
+        if (this.buildAOF == '') {
           this.buildAOF = item;
         }
         console.log(this.buildAOF);
         break;
-        
       }
-      case (4):
-      {
-        if(this.buildClass == "")
-          {
-            this.buildClass = item;
-          }
-          console.log(this.buildClass);
-          break;
-      }
-      case (5):
-      {
-        if(this.buildSpells.length < 12  && !this.buildSpells.includes(item))
-          {
-            this.buildSpells.push(item);
-          } 
-          console.log(this.buildSpells);
-          break;
-      }
-      case (6):
-      {
-        if(this.buildTalisman.length < 4  && !this.buildTalisman.includes(item))
-          {
-            this.buildTalisman.push(item);
-          }
-          console.log(this.buildTalisman);
+      case 4: {
+        if (this.buildClass == '') {
+          this.buildClass = item;
+        }
+        console.log(this.buildClass);
         break;
       }
-    }    
+      case 5: {
+        if (this.buildSpells.length < 12 && !this.buildSpells.includes(item)) {
+          this.buildSpells.push(item);
+        }
+        console.log(this.buildSpells);
+        break;
+      }
+      case 6: {
+        if (
+          this.buildTalisman.length < 4 &&
+          !this.buildTalisman.includes(item)
+        ) {
+          this.buildTalisman.push(item);
+        }
+        console.log(this.buildTalisman);
+        break;
+      }
+    }
   }
 
-  createBuild(){
+  createBuild() {
     this.currentBuild.userId = this.user.id;
     this.currentBuild.buildName = this.buildName;
     this.currentBuild.weapon1 = this.buildWeapons[0];
     this.currentBuild.weapon2 = this.buildWeapons[1];
-    this.currentBuild.armorHead =this.buildArmor[this.buildArmor.indexOf("Helm") - 1];
-    this.currentBuild.armorBody =this.buildArmor[this.buildArmor.indexOf("Chest Armor") - 1];
-    this.currentBuild.armorHands =this.buildArmor[this.buildArmor.indexOf("Gauntlets") - 1];
-    this.currentBuild.armorLegs =this.buildArmor[this.buildArmor.indexOf("Leg Armor") - 1];
+    this.currentBuild.armorHead =
+      this.buildArmor[this.buildArmor.indexOf('Helm') - 1];
+    this.currentBuild.armorBody =
+      this.buildArmor[this.buildArmor.indexOf('Chest Armor') - 1];
+    this.currentBuild.armorHands =
+      this.buildArmor[this.buildArmor.indexOf('Gauntlets') - 1];
+    this.currentBuild.armorLegs =
+      this.buildArmor[this.buildArmor.indexOf('Leg Armor') - 1];
     this.currentBuild.ashOfWar = this.buildAOF;
     this.currentBuild.talisman1 = this.buildTalisman[0];
     this.currentBuild.talisman2 = this.buildTalisman[1];
@@ -139,5 +153,14 @@ export class CreateComponent {
     this.currentBuild.spell12 = this.buildSpells[11];
     this.currentBuild.class = this.buildClass;
     console.log(this.currentBuild);
+    this._databaseService
+      .addBuild(this.currentBuild)
+
+      .subscribe((Response: Build) =>
+        { let created: Created = {} as Created;
+      created.userId = this.user.id
+      created.buildId = Response.id
+        this._databaseService.addCreated(created).subscribe((Response: Created) => {})
+      });
   }
 }

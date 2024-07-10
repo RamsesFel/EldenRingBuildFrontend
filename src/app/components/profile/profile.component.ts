@@ -2,6 +2,9 @@ import {GoogleSigninButtonModule, SocialAuthService, SocialUser } from '@abacrit
 import { Component } from '@angular/core';
 import { WeaponsComponent } from '../equipment/weapons/weapons.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { DatabaseService } from '../../services/database.service';
+import { Favorite } from '../../models/favorite';
+import { Created } from '../../models/created';
 
 
 @Component({
@@ -14,8 +17,17 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class ProfileComponent {
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
-  constructor(private socialAuthServiceConfig: SocialAuthService) { }
-  
+  allFavorites: Favorite [] = [];
+  allCreated: Created [] =  [];
+  constructor(private socialAuthServiceConfig: SocialAuthService, private _databaseService: DatabaseService) { }
+  getFavoriteByID(id:string)
+  {
+this._databaseService.getFavoriteById(id).subscribe((Response:Favorite[])=>{this.allFavorites = Response})
+  }
+  getCreatedByID(id:string)
+  {
+this._databaseService.getCreatedById(id).subscribe((Response:Created[])=>{this.allCreated = Response})
+  }
   ngOnInit() {
     //authState is a custom observable that will run again any time changes are noticed.
     this.socialAuthServiceConfig.authState.subscribe((userResponse: SocialUser) => {

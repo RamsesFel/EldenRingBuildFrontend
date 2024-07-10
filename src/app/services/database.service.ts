@@ -32,8 +32,8 @@ export class DatabaseService {
   }
 
   //-----------------created
-  getCreatedById(id:string):Observable<Created> {
-    return this.http.get<Created>(`${this.url}/api/Created/${id}`);
+  getCreatedById(id:string):Observable<Created[]> {
+    return this.http.get<Created[]>(`${this.url}/api/Created/${id}`);
   }
   
   addCreated(newCreated:Created):Observable<Created> {
@@ -45,8 +45,8 @@ export class DatabaseService {
   }
 
   //-----------------favorite
-  getFavoriteById(id:string):Observable<Favorite> {
-    return this.http.get<Favorite>(`${this.url}/api/Favorite/${id}`);
+  getFavoriteById(id:string):Observable<Favorite[]> {
+    return this.http.get<Favorite[]>(`${this.url}/api/Favorite/${id}`);
   }
 
   addFavorite(newFavorite:Favorite):Observable<Favorite> {

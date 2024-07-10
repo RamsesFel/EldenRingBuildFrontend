@@ -5,13 +5,11 @@
 <button (click)="showList(6)">Talismans</button>
 <button (click)="showList(5)">Spells</button>
 
-<br>
-<input type="text" [(ngModel)]="buildName">
-<button (click)="createBuild()">Create Build</button>
+<br />
+<input type="text" [(ngModel)]="buildName" />
+<button routerLink="/" (click)="createBuild()">Create Build</button>
 
-
-@switch (this.toggleList) 
-{ @case (1) {
+@switch (this.toggleList) { @case (1) {
 <app-weapons (addWeaponEvent)="addtoBuild($event)"></app-weapons>
 } @case (2) {
 <app-armor (addArmorEvent)="addArmortoBuild($event)"></app-armor>
@@ -23,6 +21,4 @@
 <app-spells (addSpellEvent)="addtoBuild($event)"></app-spells>
 } @case (6) {
 <app-talismans (addTalismanEvent)="addtoBuild($event)"></app-talismans>
-}
-}
-
+} }
