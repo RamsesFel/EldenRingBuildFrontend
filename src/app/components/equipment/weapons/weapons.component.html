@@ -6,6 +6,7 @@
     }
     </select>
 <button (click)="searchType()">Search</button>
+<button (click)="getRandomWeapon()">Get Random Weapon</button>
 <table>
     <tr>
         <th>Name</th>
@@ -21,7 +22,7 @@
     @if(singleWeapon[1] != null){
         @for (weapon of singleWeapon; track $index) {
             @for (w of weapon.data; track $index) {
-                @if (w.category.includes(weaponCategory) || weaponCategory == "All") {
+                @if (w.category == weaponCategory || w.category.includes(weaponCategory) || weaponCategory == "All") {
             <tr>
                 <td>{{w.name}}</td>
                 <td>{{w.description}}</td>
@@ -45,9 +46,9 @@
 }
         }
     }@else{
-        @for (weapon of currentWeapon; track $index) {
+        @for (weapon of weaponList; track $index) {
             @for (w of weapon.data; track $index) {
-                @if (w.category.includes(weaponCategory) || weaponCategory == "All") {
+                @if (w.category == weaponCategory || w.category.includes(weaponCategory) || weaponCategory == "All") {
             <tr>
                 <td>{{w.name}}</td>
                 <td>{{w.description}}</td>
@@ -70,7 +71,7 @@
         }
     }
 
-    }
+}
 }
 </table>
 

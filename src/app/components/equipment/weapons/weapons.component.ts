@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class WeaponsComponent {
   constructor(private eldenringService:EldenRingService){};
 
-  currentWeapon:WeaponsModel[] = [];
+  weaponList:WeaponsModel[] = [];
   singleWeapon:WeaponsModel[] = [];
   formWeapon:string = "";
   allWeaponTypes:string[] = ["All"];
@@ -25,6 +25,7 @@ export class WeaponsComponent {
   }
 
   getWeaponByName(){
+      this.singleWeapon = [];
       this.eldenringService.getWeaponByName(this.formWeapon).subscribe((response:WeaponsModel) => {
       this.singleWeapon.push(response);
       this.eldenringService.getShieldByName(this.formWeapon).subscribe((response:WeaponsModel)=>{
@@ -38,7 +39,7 @@ export class WeaponsComponent {
     this.resetAll();
       for (let i = 0; i < 4; i++) {
         this.eldenringService.getWeaponList(i).subscribe((response:WeaponsModel)=>{
-          this.currentWeapon.push(response);
+          this.weaponList.push(response);
           if(i == 3){
           this.getShieldList();
           }
@@ -48,7 +49,7 @@ export class WeaponsComponent {
 
   getShieldList(){
       this.eldenringService.getShieldsList().subscribe((response:WeaponsModel)=>{
-      this.currentWeapon.push(response);
+      this.weaponList.push(response);
       this.getWeaponTypes();
       })
   }
@@ -66,18 +67,40 @@ export class WeaponsComponent {
   }
 
   getWeaponTypes(){
-    console.log(this.currentWeapon)
-    for (let i = 0; i < this.currentWeapon.length; i++) {
-      let allWeaponTypes = [...new Set(this.currentWeapon[i].data.map((x)=>x.category))];
+    console.log(this.weaponList)
+    for (let i = 0; i < this.weaponList.length; i++) {
+      let allWeaponTypes = [...new Set(this.weaponList[i].data.map((x)=>x.category))];
       this.allWeaponTypes.push(...allWeaponTypes);
+    }
+    console.log(this.allWeaponTypes)
+    this.allWeaponTypes = [...new Set(this.allWeaponTypes)];
+    this.allWeaponTypes.pop();
   }
-  console.log(this.allWeaponTypes)
-  this.allWeaponTypes = [...new Set(this.allWeaponTypes)];
-}
 
-resetAll(){
-  this.singleWeapon = [];
-  this.currentWeapon = [];
-  this.allWeaponTypes = ["All"];
-}
+  resetAll(){
+    this.singleWeapon = [];
+    this.weaponList = [];
+    this.allWeaponTypes = ["All"];
+  }
+
+  getRandomWeapon(){
+    while(true){
+      let randomItemnum = (Math.round(Math.random() * (50 - 0 )+ 0));
+      let randomListnum = (Math.round(Math.random() * (4 - 0 )+ 0));
+      let randomItem = this.weaponList[randomListnum].data[randomItemnum];
+      console.log(randomItem.category);
+    try {
+
+    }
+    catch {
+
+    }
+    if(randomItem.category == this.weaponCategory || this.weaponCategory == "All" && randomItem.category != undefined){
+      this.formWeapon = randomItem.name;
+      break;
+    }
+    }
+    this.singleWeapon = [];
+    this.searchType();
+  }
 }
