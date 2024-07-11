@@ -1,0 +1,14 @@
+ul{
+    list-style-type: none;
+}
+table,th,td{
+    border-style: solid;
+    border-color: black;
+    border-collapse:collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+button{
+    padding: 15px 32px;
+    font-size: 16px;
+}

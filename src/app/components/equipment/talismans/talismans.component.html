@@ -1,3 +1,4 @@
+<br>
 <input type="text" [(ngModel)]="formTalisman" placeholder="Search Talisman By Name">
 <button (click)="getTalismanByName()">Search</button>
 <table>
@@ -13,7 +14,7 @@
         <td>{{t.name}}</td>
         <td>{{t.description}}</td>
         <td>{{t.effect}}</td>
-        <td><img height="100px" src="{{t.image}}"></td>
+        <td><img height="200px" src="{{t.image}}"></td>
         <td><button (click)="addTailisman(t.name)">Add</button></td>
 
     </tr>

@@ -1,3 +1,4 @@
+
 <input type="text" [(ngModel)]="formArmor" placeholder="Search Armor By Name">
 <select [(ngModel)]="armorCategory" (select)="getArmorList()">
     <option value="All">All Armor</option>
@@ -32,7 +33,7 @@
             {{r.name}} {{r.amount}}
             }</td>
         <td>{{a.weight}}</td>
-        <td><img height="100px" src="{{a.image}}"></td>
+        <td><img height="200px" src="{{a.image}}"></td>
         <td><button (click)="addArmor(a.name, a.category)">Add</button></td>
     </tr>
 }
@@ -53,7 +54,7 @@
             {{r.name}} {{r.amount}}
             }</td>
         <td>{{a.weight}}</td>
-        <td><img height="100px" src="{{a.image}}"></td>
+        <td><img height="200px" src="{{a.image}}"></td>
         <td><button (click)="addArmor(a.name,a.category)">Add</button></td>
     </tr>
 }

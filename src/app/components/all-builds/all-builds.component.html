@@ -16,35 +16,45 @@
         <tr>
             <td>ANONYMOUS USER</td>
             <td>{{b.buildName}}</td>
-            <td>{{b.armorHead}} <br>
-                {{b.armorBody}} <br>
-                {{b.armorHands}} <br>
-                {{b.armorLegs}} <br>
+            <td>
+                <ul>
+                    <li>{{b.armorHead}} </li>
+                    <li>{{b.armorBody}}</li>
+                    <li>{{b.armorHands}}</li>
+                    <li>{{b.armorLegs}}</li>
+                </ul>
             </td>
             <td>{{b.ashOfWar}}</td>
             <td>{{b.class}}</td>
             <td>
-                {{b.spell1}}
-                @if (b.spell2 != null) {<br> {{b.spell2}} <br>} 
-                @if (b.spell3 != null) { {{b.spell3}} <br>} 
-                @if (b.spell4 != null) { {{b.spell4}} <br>} 
-                @if (b.spell5 != null) { {{b.spell5}} <br>}  
-                @if (b.spell6 != null) { {{b.spell6}} <br>} 
-                @if (b.spell7 != null) { {{b.spell7}} <br>} 
-                @if (b.spell8 != null) { {{b.spell8}} <br>} 
-                @if (b.spell9 != null) { {{b.spell9}} <br>} 
-                @if (b.spell10 != null) { {{b.spell10}} <br>}
-                @if (b.spell11 != null) { {{b.spell1}} <br>}
-                @if (b.spell12 != null) { {{b.spell12}} <br>}
-            </td>
-            <td>{{b.talisman1}} 
-                @if (b.talisman2 != null) {<br> {{b.talisman2}} <br>}
-                @if (b.talisman3 != null) { {{b.talisman3}} <br>}
-                @if (b.talisman4 != null) { {{b.talisman4}} <br>}
+                <ul>
+                    <li>{{b.spell1}}</li>
+                    <li>{{b.spell2}}</li>
+                    <li>{{b.spell3}}</li>
+                    <li>{{b.spell4}}</li>
+                    <li>{{b.spell5}}</li>
+                    <li>{{b.spell6}}</li>
+                    <li>{{b.spell7}}</li>
+                    <li>{{b.spell8}}</li>
+                    <li>{{b.spell9}}</li>
+                    <li>{{b.spell10}}</li>
+                    <li>{{b.spell11}}</li>
+                    <li>{{b.spell12}}</li>
+                </ul>
             </td>
             <td>
-                {{b.weapon1}} <br> 
-                {{b.weapon2}}
+                <ul>
+                    <li>{{b.talisman1}}</li>
+                    <li>{{b.talisman2}}</li>
+                    <li>{{b.talisman3}}</li>
+                    <li>{{b.talisman4}}</li>
+                </ul> 
+            </td>
+            <td>
+                <ul>
+                    <li>{{b.weapon1}}</li>
+                    <li>{{b.weapon2}}</li>
+                </ul>
             </td>
             <td><button (click)="addToFavorites(b.id)">Add To Favorites</button></td>
         </tr>

@@ -1,3 +1,4 @@
+<br>
 <input type="text" [(ngModel)]="formClass" placeholder="Search Class By Name">
 <button (click)="getClassByName()">Search</button>
 <table>
@@ -23,7 +24,7 @@
             Faith: {{c.stats.faith}} <br>
             Arcane: {{c.stats.arcane}}
         </td>
-        <td><img height="100px" src="{{c.image}}"></td>
+        <td><img height="200px" src="{{c.image}}"></td>
         <td><button (click)="addClass(c.name)">Add</button></td>
     </tr>
 }

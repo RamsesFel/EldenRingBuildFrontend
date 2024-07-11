@@ -1,13 +1,67 @@
-<button (click)="showList(4)">Classes</button>
-<button (click)="showList(1)">Weapons</button>
-<button (click)="showList(3)">Ashes Of War</button>
-<button (click)="showList(2)">Armor</button>
-<button (click)="showList(6)">Talismans</button>
-<button (click)="showList(5)">Spells</button>
+<header>
+    <button (click)="showList(4)">Classes</button>
+    <button (click)="showList(1)">Weapons</button>
+    <button (click)="showList(3)">Ashes Of War</button>
+    <button (click)="showList(2)">Armor</button>
+    <button (click)="showList(6)">Talismans</button>
+    <button (click)="showList(5)">Spells</button>
+</header>
+<br>
 
-<br />
-<input type="text" [(ngModel)]="buildName" />
-<button routerLink="/" (click)="createBuild()">Create Build</button>
+<table>
+    <tr>
+        <th>Build Name</th>
+        <th>Armor</th>
+        <th>Ash Of War</th>
+        <th>Class</th>
+        <th>Spells</th>
+        <th>Talismans</th>
+        <th>Weapons</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+            <input type="text" [(ngModel)]="buildName" />
+        </td>
+        <td>
+            <ul>
+            @for (armor of buildArmor; track $index) {
+                @if(armor != "Helm" && armor != "Chest Armor" && armor != "Gauntlets" && armor != "Leg Armor"){
+                    <li>{{armor}}</li>
+                }
+            }
+            </ul>
+        </td>
+        <td>{{buildAOF}}</td>
+        <td>{{buildClass}}</td>
+        <td>
+            <ul>
+        @for (spell of buildSpells; track $index) {
+            <li>{{spell}}</li>
+        }
+            </ul>
+        </td>
+        <td>
+            <ul>
+        @for (talisman of buildTalisman; track $index) {
+            <li>{{talisman}}</li>
+        }
+            </ul>
+        </td>
+        <td>
+            <ul>
+        @for (weapon of buildWeapons; track $index) {
+            <li>{{weapon}}</li>
+        }
+            </ul>
+        </td>
+        <td><button (click)="resetBuild()">Reset</button></td>
+    </tr>
+</table>
+    <br>
+    <button style="background-color:rgb(0, 247, 255)" routerLink="/" (click)="createBuild()">Create Build</button>
+    <br>
+
 
 @switch (this.toggleList) { @case (1) {
 <app-weapons (addWeaponEvent)="addtoBuild($event)"></app-weapons>

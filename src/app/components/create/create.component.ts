@@ -126,6 +126,7 @@ export class CreateComponent {
     this.currentBuild.buildName = this.buildName;
     this.currentBuild.weapon1 = this.buildWeapons[0];
     this.currentBuild.weapon2 = this.buildWeapons[1];
+    this.currentBuild.class = this.buildClass;
     this.currentBuild.armorHead =
       this.buildArmor[this.buildArmor.indexOf('Helm') - 1];
     this.currentBuild.armorBody =
@@ -151,7 +152,6 @@ export class CreateComponent {
     this.currentBuild.spell10 = this.buildSpells[9];
     this.currentBuild.spell11 = this.buildSpells[10];
     this.currentBuild.spell12 = this.buildSpells[11];
-    this.currentBuild.class = this.buildClass;
     console.log(this.currentBuild);
 
     this._databaseService.addBuild(this.currentBuild).subscribe((Response: Build) =>{ 
@@ -160,5 +160,15 @@ export class CreateComponent {
       createdBuild.buildId = Response.id;
         this._databaseService.addCreated(createdBuild).subscribe((Response: Created) => {})
       });
+  }
+
+  resetBuild(){
+    this.buildWeapons = [];
+    this.buildArmor = [];
+    this.buildAOF = '';
+    this.buildTalisman = [];
+    this.buildSpells = [];
+    this.buildClass = '';
+    this.buildName = '';
   }
 }
