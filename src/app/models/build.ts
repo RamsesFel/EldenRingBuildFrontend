@@ -25,5 +25,5 @@ export interface Build {
   spell10: string;
   spell11: string;
   spell12: string;
-  class: string;
+  classes: string;
 }

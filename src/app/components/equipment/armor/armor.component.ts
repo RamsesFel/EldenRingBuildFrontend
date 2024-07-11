@@ -43,5 +43,17 @@ export class ArmorComponent {
       })
     }
   }
-  
+
+  getRandomArmor(){
+    while(true){
+    let randomItemnum = (Math.round(Math.random() * (100 - 0 )+ 0));
+    let randomListnum = (Math.round(Math.random() * (5 - 0 )+ 0));
+    let randomItem = this.armorList[randomListnum].data[randomItemnum]
+    if(randomItem.category == this.armorCategory || this.armorCategory == "All"){
+      this.formArmor = randomItem.name.slice(0, randomItem.name.indexOf("("));
+      break;
+    }
+    }
+    this.getArmorByName()
+  }
 }

@@ -126,7 +126,7 @@ export class CreateComponent {
     this.currentBuild.buildName = this.buildName;
     this.currentBuild.weapon1 = this.buildWeapons[0];
     this.currentBuild.weapon2 = this.buildWeapons[1];
-    this.currentBuild.class = this.buildClass;
+    this.currentBuild.classes = this.buildClass;
     this.currentBuild.armorHead =
       this.buildArmor[this.buildArmor.indexOf('Helm') - 1];
     this.currentBuild.armorBody =

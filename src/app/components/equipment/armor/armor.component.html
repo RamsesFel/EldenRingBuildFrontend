@@ -3,11 +3,12 @@
 <select [(ngModel)]="armorCategory" (select)="getArmorList()">
     <option value="All">All Armor</option>
     <option value="Helm">Helm</option>
-    <option value="Chest">Chest</option>
-    <option value="Gauntlet">Gauntlet</option>
-    <option value="Leg">Legs</option>
+    <option value="Chest Armor">Chest</option>
+    <option value="Gauntlets">Gauntlet</option>
+    <option value="Leg Armor">Legs</option>
     </select>
 <button (click)="getArmorByName()">Search</button>
+<button (click)="getRandomArmor()">Get Random Armor</button>
 <table>
     <tr>
         <th>Name</th>

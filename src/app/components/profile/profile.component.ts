@@ -57,6 +57,4 @@ export class ProfileComponent {
   deleteFavorite(favoriteId:number) {
     this._databaseService.deleteFavorite(favoriteId).subscribe((response) => {this.getFavoriteByID(this.user.id)});
   }
-
-
 }
