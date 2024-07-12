@@ -19,10 +19,10 @@
         <th>Image</th>
         <th></th>
     </tr>
-    @if(singleWeapon[1] != null){
+    @if (randomWeapon) {
         @for (weapon of singleWeapon; track $index) {
             @for (w of weapon.data; track $index) {
-                @if (w.category == weaponCategory || w.category.includes(weaponCategory) || weaponCategory == "All") {
+                @if (w.name == formWeapon) {
             <tr>
                 <td>{{w.name}}</td>
                 <td>{{w.description}}</td>
@@ -45,10 +45,36 @@
     }
 }
         }
-    }@else{
+    }@else if(singleWeapon[0] != null){
+        @for (weapon of singleWeapon; track $index) {
+            @for (w of weapon.data; track $index) {
+                @if (w.category === weaponCategory || weaponCategory == "All") {
+            <tr>
+                <td>{{w.name}}</td>
+                <td>{{w.description}}</td>
+                <td>{{w.category}}</td>
+                <td>@for (a of w.attack; track $index) {
+                    {{a.name}} {{a.amount}}
+                }</td>
+                <td>@for (d of w.defence; track $index) {
+                    {{d.name}} {{d.amount}}
+                }</td>
+                <td>@for (s of w.scalesWith; track $index) {
+                    {{s.name}} {{s.scaling}}
+                }</td>
+                <td>@for (r of w.requiredAttributes; track $index) {
+                    {{r.name}} {{r.amount}}
+                }</td>
+                <td><img height="200px" src="{{w.image}}"></td>
+                <td><button (click)="addWeapon(w.name)">Add</button></td>
+            </tr>
+    }
+}
+        }
+    } @else{
         @for (weapon of weaponList; track $index) {
             @for (w of weapon.data; track $index) {
-                @if (w.category == weaponCategory || w.category.includes(weaponCategory) || weaponCategory == "All") {
+                @if (w.category === weaponCategory || weaponCategory == "All") {
             <tr>
                 <td>{{w.name}}</td>
                 <td>{{w.description}}</td>

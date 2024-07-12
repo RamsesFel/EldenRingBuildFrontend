@@ -18,6 +18,7 @@ export class WeaponsComponent {
   formWeapon:string = "";
   allWeaponTypes:string[] = ["All"];
   weaponCategory:string = "All";
+  randomWeapon:boolean = false;
   @Output() addWeaponEvent = new EventEmitter<string>();
 
   ngOnInit(){
@@ -25,6 +26,7 @@ export class WeaponsComponent {
   }
 
   getWeaponByName(){
+      this.randomWeapon = false;
       this.singleWeapon = [];
       this.eldenringService.getWeaponByName(this.formWeapon).subscribe((response:WeaponsModel) => {
       this.singleWeapon.push(response);
@@ -81,20 +83,16 @@ export class WeaponsComponent {
     this.singleWeapon = [];
     this.weaponList = [];
     this.allWeaponTypes = ["All"];
+    this.randomWeapon = false;
   }
 
   getRandomWeapon(){
+    this.randomWeapon = true;
     while(true){
-      let randomItemnum = (Math.round(Math.random() * (50 - 0 )+ 0));
-      let randomListnum = (Math.round(Math.random() * (4 - 0 )+ 0));
+      let randomListnum = (Math.round(Math.random() * (this.weaponList.length - 1  - 0 )+ 0));
+      let randomItemnum = (Math.round(Math.random() * (this.weaponList[randomListnum].data.length -1 - 0 )+ 0));
       let randomItem = this.weaponList[randomListnum].data[randomItemnum];
-      console.log(randomItem.category);
-    try {
-
-    }
-    catch {
-
-    }
+      console.log(randomItem.category)
     if(randomItem.category == this.weaponCategory || this.weaponCategory == "All" && randomItem.category != undefined){
       this.formWeapon = randomItem.name;
       break;

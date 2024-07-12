@@ -15,6 +15,7 @@ export class TalismansComponent {
 
   currentTalisman:TalismansModel = {} as TalismansModel;
   formTalisman:string = "";
+  isRandom:boolean = false;
   
   @Output() addTalismanEvent = new EventEmitter<string>();
 
@@ -29,6 +30,7 @@ export class TalismansComponent {
   getTalismanByName(){
     this.eldenringService.getTalismanByName(this.formTalisman).subscribe((response:TalismansModel) => {
       this.currentTalisman = response;
+      this.isRandom = false;
       console.log(response);
     })
   }
@@ -36,7 +38,16 @@ export class TalismansComponent {
   getTalismanList(){
     this.eldenringService.getTalismansList().subscribe((response:TalismansModel)=>{
       this.currentTalisman = response;
+      if(this.isRandom){
+        this.formTalisman = this.currentTalisman.data[Math.round(Math.random() * (this.currentTalisman.data.length - 1  - 0 )+ 0)].name;
+      }
+      this.getTalismanByName();
       console.log(response);
     })
+  }
+
+  getRandomTalisman(){
+    this.isRandom = true;
+    this.getTalismanList();
   }
 }
