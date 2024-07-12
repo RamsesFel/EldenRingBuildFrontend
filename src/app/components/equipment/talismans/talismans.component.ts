@@ -8,45 +8,55 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './talismans.component.html',
-  styleUrl: './talismans.component.css'
+  styleUrl: './talismans.component.css',
 })
 export class TalismansComponent {
-  constructor(private eldenringService:EldenRingService){};
+  constructor(private eldenringService: EldenRingService) {}
 
-  currentTalisman:TalismansModel = {} as TalismansModel;
-  formTalisman:string = "";
-  isRandom:boolean = false;
-  
+  currentTalisman: TalismansModel = {} as TalismansModel;
+  formTalisman: string = '';
+  isRandom: boolean = false;
+
   @Output() addTalismanEvent = new EventEmitter<string>();
 
-  addTailisman(id:string){
+  addTailisman(id: string) {
     this.addTalismanEvent.emit(id);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getTalismanList();
   }
 
-  getTalismanByName(){
-    this.eldenringService.getTalismanByName(this.formTalisman).subscribe((response:TalismansModel) => {
-      this.currentTalisman = response;
-      this.isRandom = false;
-      console.log(response);
-    })
+  getTalismanByName() {
+    this.eldenringService
+      .getTalismanByName(this.formTalisman)
+      .subscribe((response: TalismansModel) => {
+        this.currentTalisman = response;
+        this.isRandom = false;
+        console.log(response);
+      });
   }
 
-  getTalismanList(){
-    this.eldenringService.getTalismansList().subscribe((response:TalismansModel)=>{
-      this.currentTalisman = response;
-      if(this.isRandom){
-        this.formTalisman = this.currentTalisman.data[Math.round(Math.random() * (this.currentTalisman.data.length - 1  - 0 )+ 0)].name;
-      }
-      this.getTalismanByName();
-      console.log(response);
-    })
+  getTalismanList() {
+    this.eldenringService
+      .getTalismansList()
+      .subscribe((response: TalismansModel) => {
+        this.currentTalisman = response;
+        if (this.isRandom) {
+          this.formTalisman =
+            this.currentTalisman.data[
+              Math.round(
+                Math.random() * (this.currentTalisman.data.length - 1 - 0) + 0
+              )
+            ].name;
+          this.getTalismanByName();
+        }
+
+        console.log(response);
+      });
   }
 
-  getRandomTalisman(){
+  getRandomTalisman() {
     this.isRandom = true;
     this.getTalismanList();
   }
