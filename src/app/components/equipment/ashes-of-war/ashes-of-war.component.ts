@@ -28,30 +28,22 @@ export class AshesOfWarComponent {
   }
 
   getAshOfWarByName() {
-    this.eldenringService
-      .getAshOfWarByName(this.formAshOfWar)
-      .subscribe((response: AshesOfWarModel) => {
+    this.eldenringService.getAshOfWarByName(this.formAshOfWar).subscribe((response: AshesOfWarModel) => {
         this.currentAshOfWar = response;
         console.log(response);
       });
   }
 
   getAshesOfWarList() {
-    this.eldenringService
-      .getAshesOfWarList()
-      .subscribe((response: AshesOfWarModel) => {
+    this.eldenringService.getAshesOfWarList().subscribe((response: AshesOfWarModel) => {
         this.currentAshOfWar = response;
         console.log(response);
         if (this.isRandom) {
-          this.formAshOfWar =
-            this.currentAshOfWar.data[
-              Math.round(
-                Math.random() * (this.currentAshOfWar.data.length - 1 - 0) + 0
-              )
-            ].name;
+          this.formAshOfWar = this.currentAshOfWar.data[Math.round(Math.random() * (this.currentAshOfWar.data.length - 1 - 0) + 0)].name;
           this.getAshOfWarByName();
         }
-      });
+      }
+    );
   }
   getRandomAshOfWar() {
     this.isRandom = true;

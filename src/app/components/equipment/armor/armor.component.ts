@@ -39,7 +39,7 @@ export class ArmorComponent {
     for(let i = 0; i < 6; i++){
       this.eldenringService.getArmorList(i).subscribe((response:ArmorModel)=>{
         this.armorList.push(response);
-        console.log(this.armorList)
+        console.log(this.armorList);
       })
     }
   }
@@ -52,8 +52,8 @@ export class ArmorComponent {
     if(randomItem.category == this.armorCategory || this.armorCategory == "All"){
       this.formArmor = randomItem.name.slice(0, randomItem.name.indexOf("("));
       break;
-    }
-    }
-    this.getArmorByName()
+    }}
+    this.getArmorByName();
   }
+
 }

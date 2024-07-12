@@ -4,7 +4,7 @@ export interface TalismansModel {
     total:   number;
     data:    Datum[];
 }
-
+      
 export interface Datum {
     id:          string;
     name:        string;

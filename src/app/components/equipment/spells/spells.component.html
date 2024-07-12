@@ -20,24 +20,69 @@
         <th></th>
     </tr>
 
-@for (spell of currentSpell; track $index) {
-    @for (s of spell.data; track $index) {       
-        @if (s.type.includes(spellCategory) || spellCategory == "All") {
-            <tr>
-                <td>{{s.name}}</td>
-                <td>{{s.description}}</td>
-                <td>{{s.type}}</td>
-                <td>{{s.cost}}</td>
-                <td>{{s.slots}}</td>
-                <td>{{s.effects}}</td>
-                <td>@for (r of s.requires; track $index) {
-                    {{r.name}} {{r.amount}}
-                }</td>
-                <td><img height="200px" src="{{s.image}}"></td>
-                <td><button (click)="addSpell(s.name)">Add</button></td>
-            </tr>
+    @if (isRandom) {
+        @for (spell of singleSpell; track $index) {
+            @for (s of spell.data; track $index) {       
+                @if (s.type.includes(spellCategory) || spellCategory == "All") {
+                    <tr>
+                        <td>{{s.name}}</td>
+                        <td>{{s.description}}</td>
+                        <td>{{s.type}}</td>
+                        <td>{{s.cost}}</td>
+                        <td>{{s.slots}}</td>
+                        <td>{{s.effects}}</td>
+                        <td>@for (r of s.requires; track $index) {
+                            {{r.name}} {{r.amount}}
+                        }</td>
+                        <td><img height="200px" src="{{s.image}}"></td>
+                        <td><button (click)="addSpell(s.name)">Add</button></td>
+                    </tr>
+                }
+            }
         }
-        
+    } @else if (singleSpell[0] != null) {
+        @for (spell of singleSpell; track $index) {
+            @for (s of spell.data; track $index) {       
+                @if (s.type.includes(spellCategory) || spellCategory == "All") {
+                    <tr>
+                        <td>{{s.name}}</td>
+                        <td>{{s.description}}</td>
+                        <td>{{s.type}}</td>
+                        <td>{{s.cost}}</td>
+                        <td>{{s.slots}}</td>
+                        <td>{{s.effects}}</td>
+                        <td>@for (r of s.requires; track $index) {
+                            {{r.name}} {{r.amount}}
+                        }</td>
+                        <td><img height="200px" src="{{s.image}}"></td>
+                        <td><button (click)="addSpell(s.name)">Add</button></td>
+                    </tr>
+                }
+                
+            }
+        }
+    } @else {
+        @for (spell of spellList; track $index) {
+            @for (s of spell.data; track $index) {       
+                @if (s.type.includes(spellCategory) || spellCategory == "All") {
+                    <tr>
+                        <td>{{s.name}}</td>
+                        <td>{{s.description}}</td>
+                        <td>{{s.type}}</td>
+                        <td>{{s.cost}}</td>
+                        <td>{{s.slots}}</td>
+                        <td>{{s.effects}}</td>
+                        <td>@for (r of s.requires; track $index) {
+                            {{r.name}} {{r.amount}}
+                        }</td>
+                        <td><img height="200px" src="{{s.image}}"></td>
+                        <td><button (click)="addSpell(s.name)">Add</button></td>
+                    </tr>
+                }
+                
+            }
+        }
+
     }
-}
+
 </table>

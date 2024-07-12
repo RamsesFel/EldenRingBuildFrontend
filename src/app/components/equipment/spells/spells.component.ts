@@ -13,10 +13,11 @@ import { SpellsModel } from '../../../models/spells';
 export class SpellsComponent {
   constructor(private eldenringService: EldenRingService) {}
 
-  currentSpell: SpellsModel[] = [];
+  spellList: SpellsModel[] = [];
   formSpell: string = '';
   spellCategory: string = 'All';
   isRandom: boolean = false;
+  singleSpell: SpellsModel [] = [];
 
   @Output() addSpellEvent = new EventEmitter<string>();
 
@@ -29,49 +30,54 @@ export class SpellsComponent {
   }
 
   getSpellByName() {
-    this.currentSpell = [];
+    this.singleSpell = [];
     this.isRandom = false;
-    this.eldenringService
-      .getSorceryByName(this.formSpell)
-      .subscribe((response: SpellsModel) => {
-        this.currentSpell.push(response);
+    if(this.spellCategory == "Sorcery" || this.spellCategory == "Sorceries") {
+      this.eldenringService.getSorceryByName(this.formSpell).subscribe((response: SpellsModel) => {
+          this.singleSpell.push(response);
+        });
+    } else if(this.spellCategory == "Incantation" || this.spellCategory == "Incantations") {
+      this.eldenringService.getIncantationByName(this.formSpell).subscribe((response: SpellsModel) => {
+          this.singleSpell.push(response);
+          console.log(response);
+        });
+    } else {
+      this.eldenringService.getSorceryByName(this.formSpell).subscribe((response: SpellsModel) => {
+        this.singleSpell.push(response);
       });
-    this.eldenringService
-      .getIncantationByName(this.formSpell)
-      .subscribe((response: SpellsModel) => {
-        this.currentSpell.push(response);
+      this.eldenringService.getIncantationByName(this.formSpell).subscribe((response: SpellsModel) => {
+        this.singleSpell.push(response);
         console.log(response);
       });
+    }
   }
 
   getSpellsList() {
-    this.currentSpell = [];
-    this.eldenringService
-      .getIncantationsList()
-      .subscribe((response: SpellsModel) => {
-        this.currentSpell.push(response);
+    this.eldenringService.getIncantationsList().subscribe((response: SpellsModel) => {
+        this.spellList.push(response);
         console.log(response);
-        this.eldenringService
-          .getSorceriesList()
-          .subscribe((response: SpellsModel) => {
-            this.currentSpell.push(response);
+        this.eldenringService.getSorceriesList().subscribe((response: SpellsModel) => {
+            this.spellList.push(response);
             console.log(response);
           });
       });
-    }
-      getRandomSpell(){
-        this.isRandom = true;
-        while(true){
-          let randomListnum = (Math.round(Math.random() * (this.currentSpell.length - 1  - 0 )+ 0));
-          let randomItemnum = (Math.round(Math.random() * (this.currentSpell[randomListnum].data.length -1 - 0 )+ 0));
-          let randomItem = this.currentSpell[randomListnum].data[randomItemnum];
-          console.log(randomItem.type)
-        if(randomItem.type == this.spellCategory || this.spellCategory == "All" && randomItem.type != undefined){
-          this.formSpell = randomItem.name;
-          break;
-        }
-        }
-        this.getSpellByName();
-
+  }
+  
+  getRandomSpell(){
+    this.isRandom = true;
+    console.log(this.spellList);
+    while(true){
+      let randomListnum = (Math.round(Math.random() * (this.spellList.length - 1  - 0 )+ 0));
+      console.log(randomListnum);
+      let randomItemnum = (Math.round(Math.random() * (this.spellList[randomListnum].data.length -1 - 0 )+ 0));
+      let randomItem = this.spellList[randomListnum].data[randomItemnum];
+      console.log(randomItem.type)
+      if(randomItem.type.includes(this.spellCategory) || this.spellCategory == "All" && randomItem.type != undefined){
+        this.formSpell = randomItem.name;
+        break;
       }
+      console.log(this.spellList);
+    }
+    this.getSpellByName();
+  }
 }

@@ -21,46 +21,45 @@
         <th></th>
     </tr>
     @if (currentArmor.data != null) {
-    @for (a of currentArmor.data; track $index) {
-        @if (a.category.includes(armorCategory) || armorCategory == "All") {
-    <tr>
-        <td>{{a.name}}</td>
-        <td>{{a.description}}</td>
-        <td>{{a.category}}</td>
-        <td>@for (dn of a.dmgNegation; track $index) {
-            {{dn.name}} {{dn.amount}}
-            }</td>
-        <td>@for (r of a.resistance; track $index) {
-            {{r.name}} {{r.amount}}
-            }</td>
-        <td>{{a.weight}}</td>
-        <td><img height="200px" src="{{a.image}}"></td>
-        <td><button (click)="addArmor(a.name, a.category)">Add</button></td>
-    </tr>
-}
-    }
+        @for (a of currentArmor.data; track $index) {
+            @if (a.category.includes(armorCategory) || armorCategory == "All") {
+                <tr>
+                    <td>{{a.name}}</td>
+                    <td>{{a.description}}</td>
+                    <td>{{a.category}}</td>
+                    <td>@for (dn of a.dmgNegation; track $index) {
+                        {{dn.name}} {{dn.amount}}
+                        }</td>
+                    <td>@for (r of a.resistance; track $index) {
+                        {{r.name}} {{r.amount}}
+                        }</td>
+                    <td>{{a.weight}}</td>
+                    <td><img height="200px" src="{{a.image}}"></td>
+                    <td><button (click)="addArmor(a.name, a.category)">Add</button></td>
+                </tr>
+            }
+        }
     }@else {
-    @for (armor of armorList; track $index) {
-    @for(a of armor.data; track $index){
-        @if (a.category.includes(armorCategory) || armorCategory == "All") {
+        @for (armor of armorList; track $index) {
+            @for(a of armor.data; track $index){
+                @if (a.category.includes(armorCategory) || armorCategory == "All") {
 
-    <tr>
-        <td>{{a.name}}</td>
-        <td>{{a.description}}</td>
-        <td>{{a.category}}</td>
-        <td>@for (dn of a.dmgNegation; track $index) {
-            {{dn.name}} {{dn.amount}}
-            }</td>
-        <td>@for (r of a.resistance; track $index) {
-            {{r.name}} {{r.amount}}
-            }</td>
-        <td>{{a.weight}}</td>
-        <td><img height="200px" src="{{a.image}}"></td>
-        <td><button (click)="addArmor(a.name,a.category)">Add</button></td>
-    </tr>
-}
+                    <tr>
+                        <td>{{a.name}}</td>
+                        <td>{{a.description}}</td>
+                        <td>{{a.category}}</td>
+                        <td>@for (dn of a.dmgNegation; track $index) {
+                            {{dn.name}} {{dn.amount}}
+                            }</td>
+                        <td>@for (r of a.resistance; track $index) {
+                            {{r.name}} {{r.amount}}
+                            }</td>
+                        <td>{{a.weight}}</td>
+                        <td><img height="200px" src="{{a.image}}"></td>
+                        <td><button (click)="addArmor(a.name,a.category)">Add</button></td>
+                    </tr>
+                }
+            }
+        }
     }
-    }
-    }
-
 </table>
