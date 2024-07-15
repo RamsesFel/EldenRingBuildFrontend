@@ -1,5 +1,5 @@
 import {GoogleSigninButtonModule, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, output } from '@angular/core';
 import { WeaponsComponent } from '../equipment/weapons/weapons.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { DatabaseService } from '../../services/database.service';
@@ -20,6 +20,8 @@ export class ProfileComponent {
   loggedIn: boolean = false;
   allFavorites: Favorite [] = [];
   allCreated: Created [] =  [];
+  @Output() updateBuildEvent = new EventEmitter <Build>; 
+
   constructor(private socialAuthServiceConfig: SocialAuthService, private _databaseService: DatabaseService) { }
   ngOnInit() {
     //authState is a custom observable that will run again any time changes are noticed.
@@ -51,7 +53,7 @@ export class ProfileComponent {
   }
 
   updateBuild(updateBuild: Build) {
-    this._databaseService.updateBuild(updateBuild).subscribe((response) => {});
+    this.updateBuildEvent.emit(updateBuild);
   }
 
   deleteFavorite(favoriteId:number) {

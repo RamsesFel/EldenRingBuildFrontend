@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import {RouterLink} from '@angular/router';
 import { Created } from '../../models/created';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-create',
@@ -24,6 +25,7 @@ import { Created } from '../../models/created';
     SpellsComponent,
     FormsModule,
     RouterLink,
+    ProfileComponent,
   ],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css',
@@ -170,5 +172,17 @@ export class CreateComponent {
     this.buildSpells = [];
     this.buildClass = '';
     this.buildName = '';
+  }
+  updateBuild(build:Build)
+  {
+  this.buildWeapons = [build.weapon1, build.weapon2];
+  this.buildArmor = [build.armorHead, build.armorBody, build.armorHands, build.armorLegs]; 
+  this.buildAOF = build.ashOfWar; 
+  this.buildTalisman = [build.talisman1, build.talisman2, build.talisman3, build.talisman4];
+  this.buildSpells = [build.spell1, build.spell2, build.spell3, build.spell4, build.spell5, build.spell6, build.spell7, build.spell8, build.spell9, build.spell10, 
+    build.spell11, build.spell12,];
+    this.buildClass = build.classes; 
+    this.buildName = build.buildName;
+
   }
 }
