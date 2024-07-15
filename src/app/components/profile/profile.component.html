@@ -5,7 +5,7 @@
 } @else {
 <!-- calls our log out method -->
 <button class="btn btn-outline-dark" (click)="signOut()">Sign Out</button>
-
+@if(updatingBuild == false){
 <h1>My Builds</h1>
 <table>
     <tr>
@@ -65,7 +65,7 @@
                 
             </td>
             <td><button (click)="deleteBuild(c.buildId, c.id)">Delete</button></td>
-            <td><button routerLink="/Create" (click)="updateBuild(c.build)">Update</button></td>
+            <td><button (click)="UpdateBuild(c.build)">Update</button></td>
         </tr>
         }
 
@@ -126,6 +126,7 @@
         </tr>
         }
 </table>
-
-
+}@else {
+<app-create [updatingBuild]="currentBuild"></app-create>
+    }
 }

@@ -1,17 +1,18 @@
 import {GoogleSigninButtonModule, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { Component, EventEmitter, Output, output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 import { WeaponsComponent } from '../equipment/weapons/weapons.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { DatabaseService } from '../../services/database.service';
 import { Favorite } from '../../models/favorite';
 import { Created } from '../../models/created';
 import { Build } from '../../models/build';
+import { CreateComponent } from '../create/create.component';
 
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [GoogleSigninButtonModule, WeaponsComponent, RouterLink, RouterOutlet],
+  imports: [GoogleSigninButtonModule, WeaponsComponent, RouterLink, RouterOutlet, CreateComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -20,6 +21,8 @@ export class ProfileComponent {
   loggedIn: boolean = false;
   allFavorites: Favorite [] = [];
   allCreated: Created [] =  [];
+  updatingBuild:boolean = false;
+  currentBuild:Build = {} as Build;
   @Output() updateBuildEvent = new EventEmitter <Build>; 
 
   constructor(private socialAuthServiceConfig: SocialAuthService, private _databaseService: DatabaseService) { }
@@ -52,8 +55,9 @@ export class ProfileComponent {
     this._databaseService.deleteCreated(createdId).subscribe((response:void) => {this.getCreatedByID(this.user.id)});    
   }
 
-  updateBuild(updateBuild: Build) {
-    this.updateBuildEvent.emit(updateBuild);
+  UpdateBuild(updateBuild:Build) {
+    this.updatingBuild = true;
+    this.currentBuild = updateBuild;
   }
 
   deleteFavorite(favoriteId:number) {

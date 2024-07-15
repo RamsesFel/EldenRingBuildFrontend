@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { WeaponsComponent } from '../equipment/weapons/weapons.component';
 import { ArmorComponent } from '../equipment/armor/armor.component';
 import { AshesOfWarComponent } from '../equipment/ashes-of-war/ashes-of-war.component';
@@ -45,6 +45,8 @@ export class CreateComponent {
   buildSpells: string[] = [];
   buildClass: string = '';
   buildName: string = '';
+  buildId: number = 0;
+  @Input() updatingBuild:Build = {} as Build;
 
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
@@ -58,6 +60,7 @@ export class CreateComponent {
         this.loggedIn = userResponse != null;
       }
     );
+    this.setUpdatingBuild();
   }
 
   showList(num: number) {
@@ -76,7 +79,6 @@ export class CreateComponent {
     console.log(this.buildArmor.indexOf('Chest') - 1);
     console.log(this.buildArmor);
   }
-  GetAllBuilds() {}
 
   addtoBuild(item: string) {
     // console.log(this.currentBuild);
@@ -154,14 +156,19 @@ export class CreateComponent {
     this.currentBuild.spell10 = this.buildSpells[9];
     this.currentBuild.spell11 = this.buildSpells[10];
     this.currentBuild.spell12 = this.buildSpells[11];
-    console.log(this.currentBuild);
 
-    this._databaseService.addBuild(this.currentBuild).subscribe((Response: Build) =>{ 
-      let createdBuild: Created = {} as Created;
-      createdBuild.userId = this.user.id;
-      createdBuild.buildId = Response.id;
-        this._databaseService.addCreated(createdBuild).subscribe((Response: Created) => {})
-      });
+    if(this.buildId == null){
+      this._databaseService.addBuild(this.currentBuild).subscribe((Response: Build) =>{ 
+        let createdBuild: Created = {} as Created;
+        createdBuild.userId = this.user.id;
+        createdBuild.buildId = Response.id;
+          this._databaseService.addCreated(createdBuild).subscribe((Response: Created) => {})
+        });
+    }else{
+      this.currentBuild.id = this.buildId;
+      this._databaseService.updateBuild(this.currentBuild).subscribe((Response:void) =>{});
+    }
+
   }
 
   resetBuild(){
@@ -173,16 +180,18 @@ export class CreateComponent {
     this.buildClass = '';
     this.buildName = '';
   }
-  updateBuild(build:Build)
+  setUpdatingBuild()
   {
-  this.buildWeapons = [build.weapon1, build.weapon2];
-  this.buildArmor = [build.armorHead, build.armorBody, build.armorHands, build.armorLegs]; 
-  this.buildAOF = build.ashOfWar; 
-  this.buildTalisman = [build.talisman1, build.talisman2, build.talisman3, build.talisman4];
-  this.buildSpells = [build.spell1, build.spell2, build.spell3, build.spell4, build.spell5, build.spell6, build.spell7, build.spell8, build.spell9, build.spell10, 
-    build.spell11, build.spell12,];
-    this.buildClass = build.classes; 
-    this.buildName = build.buildName;
-
+  this.buildWeapons = [this.updatingBuild.weapon1, this.updatingBuild.weapon2];
+  this.buildArmor = [this.updatingBuild.armorHead, this.updatingBuild.armorBody, this.updatingBuild.armorHands, this.updatingBuild.armorLegs]; 
+  this.buildAOF = this.updatingBuild.ashOfWar; 
+  this.buildTalisman = [this.updatingBuild.talisman1, this.updatingBuild.talisman2, this.updatingBuild.talisman3, this.updatingBuild.talisman4];
+  this.buildSpells = [this.updatingBuild.spell1, this.updatingBuild.spell2, this.updatingBuild.spell3, this.updatingBuild.spell4, this.updatingBuild.spell5, this.updatingBuild.spell6, this.updatingBuild.spell7, this.updatingBuild.spell8, this.updatingBuild.spell9, this.updatingBuild.spell10, 
+    this.updatingBuild.spell11, this.updatingBuild.spell12,];
+    this.buildClass = this.updatingBuild.classes; 
+    this.buildName = this.updatingBuild.buildName;
+    this.buildId = this.updatingBuild.id;
+    console.log(this.updatingBuild.id)
   }
+
 }
