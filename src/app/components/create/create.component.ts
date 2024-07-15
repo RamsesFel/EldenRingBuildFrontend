@@ -31,10 +31,7 @@ import { ProfileComponent } from '../profile/profile.component';
   styleUrl: './create.component.css',
 })
 export class CreateComponent {
-  constructor(
-    private _databaseService: DatabaseService,
-    private socialAuthServiceConfig: SocialAuthService
-  ) {}
+  constructor(private _databaseService: DatabaseService, private socialAuthServiceConfig: SocialAuthService) {}
 
   toggleList: number = 0;
   currentBuild: Build = {} as Build;
@@ -58,9 +55,13 @@ export class CreateComponent {
         this.user = userResponse;
         //if login fails, it will return null.
         this.loggedIn = userResponse != null;
+        console.log(this.updatingBuild);
       }
     );
-    this.setUpdatingBuild();
+    this.buildId = 0;
+    if(this.updatingBuild.id != null) {
+      this.setUpdatingBuild();
+    }
   }
 
   showList(num: number) {
@@ -70,7 +71,6 @@ export class CreateComponent {
   addArmortoBuild(item: string[]) {
     console.log(item[0]);
     if (
-      this.buildArmor.length < 8 &&
       !this.buildArmor.includes(item[0]) &&
       !this.buildArmor.includes(item[1])
     ) {
@@ -156,8 +156,9 @@ export class CreateComponent {
     this.currentBuild.spell10 = this.buildSpells[9];
     this.currentBuild.spell11 = this.buildSpells[10];
     this.currentBuild.spell12 = this.buildSpells[11];
+    this.currentBuild.buildCreator = this.user.name;
 
-    if(this.buildId == null){
+    if(this.buildId == 0){
       this._databaseService.addBuild(this.currentBuild).subscribe((Response: Build) =>{ 
         let createdBuild: Created = {} as Created;
         createdBuild.userId = this.user.id;
@@ -182,11 +183,11 @@ export class CreateComponent {
   }
   setUpdatingBuild()
   {
-  this.buildWeapons = [this.updatingBuild.weapon1, this.updatingBuild.weapon2];
-  this.buildArmor = [this.updatingBuild.armorHead, this.updatingBuild.armorBody, this.updatingBuild.armorHands, this.updatingBuild.armorLegs]; 
-  this.buildAOF = this.updatingBuild.ashOfWar; 
-  this.buildTalisman = [this.updatingBuild.talisman1, this.updatingBuild.talisman2, this.updatingBuild.talisman3, this.updatingBuild.talisman4];
-  this.buildSpells = [this.updatingBuild.spell1, this.updatingBuild.spell2, this.updatingBuild.spell3, this.updatingBuild.spell4, this.updatingBuild.spell5, this.updatingBuild.spell6, this.updatingBuild.spell7, this.updatingBuild.spell8, this.updatingBuild.spell9, this.updatingBuild.spell10, 
+    this.buildWeapons = [this.updatingBuild.weapon1, this.updatingBuild.weapon2];
+    this.buildArmor = [this.updatingBuild.armorHead, this.updatingBuild.armorBody, this.updatingBuild.armorHands, this.updatingBuild.armorLegs]; 
+    this.buildAOF = this.updatingBuild.ashOfWar; 
+    this.buildTalisman = [this.updatingBuild.talisman1, this.updatingBuild.talisman2, this.updatingBuild.talisman3, this.updatingBuild.talisman4];
+    this.buildSpells = [this.updatingBuild.spell1, this.updatingBuild.spell2, this.updatingBuild.spell3, this.updatingBuild.spell4, this.updatingBuild.spell5, this.updatingBuild.spell6, this.updatingBuild.spell7, this.updatingBuild.spell8, this.updatingBuild.spell9, this.updatingBuild.spell10, 
     this.updatingBuild.spell11, this.updatingBuild.spell12,];
     this.buildClass = this.updatingBuild.classes; 
     this.buildName = this.updatingBuild.buildName;

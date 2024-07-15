@@ -14,7 +14,7 @@
 
     @for (b of allBuilds; track $index) {
         <tr>
-            <td>ANONYMOUS USER</td>
+            <td>{{b.buildCreator}}</td>
             <td>{{b.buildName}}</td>
             <td>
                 <ul>

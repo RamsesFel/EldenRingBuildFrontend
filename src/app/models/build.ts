@@ -26,4 +26,5 @@ export interface Build {
   spell11: string;
   spell12: string;
   classes: string;
+  buildCreator: string;
 }
