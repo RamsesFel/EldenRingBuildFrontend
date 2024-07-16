@@ -36,13 +36,15 @@ export class CreateComponent {
   toggleList: number = 0;
   currentBuild: Build = {} as Build;
   buildWeapons: string[] = [];
-  buildArmor: string[] = [];
+  buildArmor: string[] = ["Helm", "Chest Armor", "Gauntlets", "Leg Armor", "", "", "", ""];
   buildAOF: string = '';
   buildTalisman: string[] = [];
   buildSpells: string[] = [];
   buildClass: string = '';
   buildName: string = '';
   buildId: number = 0;
+  spellIndex:number = 0;
+  talismanIndex:number = 0;
   @Input() updatingBuild:Build = {} as Build;
 
   user: SocialUser = {} as SocialUser;
@@ -71,10 +73,10 @@ export class CreateComponent {
   addArmortoBuild(item: string[]) {
     console.log(item[0]);
     if (
-      !this.buildArmor.includes(item[0]) &&
-      !this.buildArmor.includes(item[1])
+      !this.buildArmor.includes(item[0])
     ) {
-      this.buildArmor = this.buildArmor.concat([...item]);
+      let index = this.buildArmor.indexOf(item[1]) + 4;
+      this.buildArmor[index] = item[0];
     }
     console.log(this.buildArmor.indexOf('Chest') - 1);
     console.log(this.buildArmor);
@@ -85,28 +87,31 @@ export class CreateComponent {
     //THANKS VICTORIA
     switch (this.toggleList) {
       case 1: {
-        if (this.buildWeapons.length < 2) {
-          this.buildWeapons.push(item);
+        if (this.buildWeapons.length == 2) {
+          this.buildWeapons = [];
         }
+        this.buildWeapons.push(item);
         console.log(this.buildWeapons);
         break;
       }
       case 3: {
-        if (this.buildAOF == '') {
           this.buildAOF = item;
-        }
         console.log(this.buildAOF);
         break;
       }
       case 4: {
-        if (this.buildClass == '') {
           this.buildClass = item;
-        }
         console.log(this.buildClass);
         break;
       }
       case 5: {
-        if (this.buildSpells.length < 12 && !this.buildSpells.includes(item)) {
+        if(this.buildSpells.length == 12 && !this.buildSpells.includes(item)){
+          this.buildSpells[this.spellIndex] = item;
+          this.spellIndex++;
+          if(this.spellIndex == 12){
+            this.spellIndex = 0;
+          }
+        }else if (!this.buildSpells.includes(item)) {
           this.buildSpells.push(item);
         }
         console.log(this.buildSpells);
@@ -114,9 +119,15 @@ export class CreateComponent {
       }
       case 6: {
         if (
-          this.buildTalisman.length < 4 &&
+          this.buildTalisman.length == 4 &&
           !this.buildTalisman.includes(item)
         ) {
+          this.buildTalisman[this.talismanIndex] = item;
+          this.talismanIndex++;
+          if(this.talismanIndex == 4){
+            this.talismanIndex = 0;
+          }
+        }else if (!this.buildTalisman.includes(item)){
           this.buildTalisman.push(item);
         }
         console.log(this.buildTalisman);
@@ -131,14 +142,10 @@ export class CreateComponent {
     this.currentBuild.weapon1 = this.buildWeapons[0];
     this.currentBuild.weapon2 = this.buildWeapons[1];
     this.currentBuild.classes = this.buildClass;
-    this.currentBuild.armorHead =
-      this.buildArmor[this.buildArmor.indexOf('Helm') - 1];
-    this.currentBuild.armorBody =
-      this.buildArmor[this.buildArmor.indexOf('Chest Armor') - 1];
-    this.currentBuild.armorHands =
-      this.buildArmor[this.buildArmor.indexOf('Gauntlets') - 1];
-    this.currentBuild.armorLegs =
-      this.buildArmor[this.buildArmor.indexOf('Leg Armor') - 1];
+      this.currentBuild.armorHead = this.buildArmor[4];
+      this.currentBuild.armorBody = this.buildArmor[5];
+      this.currentBuild.armorHands = this.buildArmor[6];
+      this.currentBuild.armorLegs = this.buildArmor[7];
     this.currentBuild.ashOfWar = this.buildAOF;
     this.currentBuild.talisman1 = this.buildTalisman[0];
     this.currentBuild.talisman2 = this.buildTalisman[1];
@@ -183,12 +190,12 @@ export class CreateComponent {
   }
   setUpdatingBuild()
   {
-    this.buildWeapons = [this.updatingBuild.weapon1, this.updatingBuild.weapon2];
-    this.buildArmor = [this.updatingBuild.armorHead, this.updatingBuild.armorBody, this.updatingBuild.armorHands, this.updatingBuild.armorLegs]; 
+    this.buildWeapons = [this.updatingBuild.weapon1, this.updatingBuild.weapon2].filter(x=>x);
+    this.buildArmor = ["Helm", "Chest Armor", "Gauntlets", "Leg Armor", this.updatingBuild.armorHead, this.updatingBuild.armorBody, this.updatingBuild.armorHands, this.updatingBuild.armorLegs].filter(x=>x); 
     this.buildAOF = this.updatingBuild.ashOfWar; 
-    this.buildTalisman = [this.updatingBuild.talisman1, this.updatingBuild.talisman2, this.updatingBuild.talisman3, this.updatingBuild.talisman4];
+    this.buildTalisman = [this.updatingBuild.talisman1, this.updatingBuild.talisman2, this.updatingBuild.talisman3, this.updatingBuild.talisman4].filter(x=>x);
     this.buildSpells = [this.updatingBuild.spell1, this.updatingBuild.spell2, this.updatingBuild.spell3, this.updatingBuild.spell4, this.updatingBuild.spell5, this.updatingBuild.spell6, this.updatingBuild.spell7, this.updatingBuild.spell8, this.updatingBuild.spell9, this.updatingBuild.spell10, 
-    this.updatingBuild.spell11, this.updatingBuild.spell12,];
+    this.updatingBuild.spell11, this.updatingBuild.spell12].filter(x=>x);
     this.buildClass = this.updatingBuild.classes; 
     this.buildName = this.updatingBuild.buildName;
     this.buildId = this.updatingBuild.id;
