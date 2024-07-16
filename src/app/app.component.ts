@@ -3,7 +3,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { WeaponsComponent } from './components/equipment/weapons/weapons.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CreateComponent } from './components/create/create.component';
-import { GoogleSigninButtonDirective, GoogleSigninButtonModule, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import {GoogleSigninButtonModule, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { AllBuildsComponent } from './components/all-builds/all-builds.component';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ import { GoogleSigninButtonDirective, GoogleSigninButtonModule, SocialAuthServic
     ProfileComponent,
     RouterLink,
     CreateComponent,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    AllBuildsComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

@@ -39,7 +39,7 @@
                     <li>{{b.spell9}}</li>
                     <li>{{b.spell10}}</li>
                     <li>{{b.spell11}}</li>
-                    <li>{{b.spell12}}</li>
+                    <li *ngIf="checkifNull(b.spell12)">{{b.spell12}}</li>
                 </ul>
             </td>
             <td>

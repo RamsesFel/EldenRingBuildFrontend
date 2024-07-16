@@ -3,11 +3,12 @@ import { DatabaseService } from '../../services/database.service';
 import { Build } from '../../models/build';
 import { Favorite } from '../../models/favorite';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-all-builds',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './all-builds.component.html',
   styleUrl: './all-builds.component.css'
 })
@@ -17,7 +18,8 @@ export class AllBuildsComponent {
   allBuilds: Build[] = [];
   favoritedBuilds: Build[] = [];
   user: SocialUser = {} as SocialUser;
-  loggedIn: boolean = false;
+  loggedIn:boolean = false;
+  isTrue:boolean = false;
 
   ngOnInit() {
     //authState is a custom observable that will run again any time changes are noticed.
@@ -42,5 +44,10 @@ export class AllBuildsComponent {
     favoriteBuild.buildId = buildId;
     favoriteBuild.userId = this.user.id;
     this._databaseService.addFavorite(favoriteBuild).subscribe((response) => {})
+  }
+
+  checkifNull(item:string) {
+    if (item != undefined) {return true}
+    else {return false};
   }
 }

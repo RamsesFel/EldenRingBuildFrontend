@@ -1,126 +1,127 @@
-
 @if(updatingBuild == false){
-<h1>My Builds</h1>
-<table>
-    <tr>
-        <th>Build Name</th>
-        <th>Armor</th>
-        <th>Ash Of War</th>
-        <th>Class</th>
-        <th>Spells</th>
-        <th>Talismans</th>
-        <th>Weapons</th>
-        <th></th>
-    </tr>
-    @for (c of allCreated; track $index) {
-        <tr>
-            <td>{{c.build.buildName}}</td>
-            <td>
-                <ul>
-                <li>{{c.build.armorHead}}</li> 
-                <li>{{c.build.armorBody}}</li> 
-                <li>{{c.build.armorHands}}</li> 
-                <li>{{c.build.armorLegs}} </li>
-                </ul>
-            </td>
-            <td>{{c.build.ashOfWar}}</td>
-            <td>{{c.build.classes}}</td>
-            <td>
-                <ul>
-                    <li>{{c.build.spell1}}</li>
-                    <li>{{c.build.spell2}}</li>
-                    <li>{{c.build.spell3}}</li>
-                    <li>{{c.build.spell4}}</li>
-                    <li>{{c.build.spell5}}</li>
-                    <li>{{c.build.spell6}}</li>
-                    <li>{{c.build.spell7}}</li>
-                    <li>{{c.build.spell8}}</li>
-                    <li>{{c.build.spell9}}</li>
-                    <li>{{c.build.spell10}}</li>
-                    <li>{{c.build.spell11}}</li>
-                    <li>{{c.build.spell12}}</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                <li>{{c.build.talisman1}} </li>
-                <li>{{c.build.talisman2}} </li>
-                <li>{{c.build.talisman3}} </li>
-                <li>{{c.build.talisman4}} </li>
+    <h1 (click)="changeDisplay(1)">My Builds</h1>
+    <h1 (click)="changeDisplay(2)">Favorite Builds</h1>
+    @if (showBuild) {
+        <table>
 
-            </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>{{c.build.weapon1}}</li>
-                    <li>{{c.build.weapon2}}</li>
-                </ul>
-                  
-                
-            </td>
-            <td><button (click)="deleteBuild(c.buildId, c.id)">Delete</button></td>
-            <td><button (click)="UpdateBuild(c.build)">Update</button></td>
-        </tr>
-        }
-
-
-</table>
-
-<h1>Favorite Builds</h1>
-<table>
-    <tr>
-        <th>Build Name</th>
-        <th>Armor</th>
-        <th>Ash Of War</th>
-        <th>Class</th>
-        <th>Spells</th>
-        <th>Talismans</th>
-        <th>Weapons</th>
-        <th></th>
-    </tr>
-    @for (f of allFavorites; track $index) {
-        <tr>
-            <td>{{f.build.buildName}}</td>
-            <td>
-                <ul>
-                    <li>{{f.build.armorHead}}</li> 
-                    <li>{{f.build.armorBody}}</li> 
-                    <li>{{f.build.armorHands}}</li> 
-                    <li>{{f.build.armorLegs}} </li>
+            <tr>
+                <th>Build Name</th>
+                <th>Armor</th>
+                <th>Ash Of War</th>
+                <th>Class</th>
+                <th>Spells</th>
+                <th>Talismans</th>
+                <th>Weapons</th>
+                <th></th>
+            </tr>
+            @for (c of allCreated; track $index) {
+                <tr>
+                    <td>{{c.build.buildName}}</td>
+                    <td>
+                        <ul>
+                        <li>{{c.build.armorHead}}</li> 
+                        <li>{{c.build.armorBody}}</li> 
+                        <li>{{c.build.armorHands}}</li> 
+                        <li>{{c.build.armorLegs}} </li>
+                        </ul>
+                    </td>
+                    <td>{{c.build.ashOfWar}}</td>
+                    <td>{{c.build.classes}}</td>
+                    <td>
+                        <ul>
+                            <li>{{c.build.spell1}}</li>
+                            <li>{{c.build.spell2}}</li>
+                            <li>{{c.build.spell3}}</li>
+                            <li>{{c.build.spell4}}</li>
+                            <li>{{c.build.spell5}}</li>
+                            <li>{{c.build.spell6}}</li>
+                            <li>{{c.build.spell7}}</li>
+                            <li>{{c.build.spell8}}</li>
+                            <li>{{c.build.spell9}}</li>
+                            <li>{{c.build.spell10}}</li>
+                            <li>{{c.build.spell11}}</li>
+                            <li>{{c.build.spell12}}</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                        <li>{{c.build.talisman1}} </li>
+                        <li>{{c.build.talisman2}} </li>
+                        <li>{{c.build.talisman3}} </li>
+                        <li>{{c.build.talisman4}} </li>
+        
                     </ul>
-            </td>
-            <td>{{f.build.ashOfWar}}</td>
-            <td>{{f.build.classes}}</td>
-            <td>
-                <ul>
-                    <li>{{f.build.spell1}}</li>
-                    <li>{{f.build.spell2}}</li>
-                    <li>{{f.build.spell3}}</li>
-                    <li>{{f.build.spell4}}</li>
-                    <li>{{f.build.spell5}}</li>
-                    <li>{{f.build.spell6}}</li>
-                    <li>{{f.build.spell7}}</li>
-                    <li>{{f.build.spell8}}</li>
-                    <li>{{f.build.spell9}}</li>
-                    <li>{{f.build.spell10}}</li>
-                    <li>{{f.build.spell11}}</li>
-                    <li>{{f.build.spell12}}</li>
-                </ul>
-            </td>
-            <td>{{f.build.talisman1}} 
-                @if (f.build.talisman2 != null) { {{f.build.talisman2}} }
-                @if (f.build.talisman3 != null) { {{f.build.talisman3}} }
-                @if (f.build.talisman4 != null) { {{f.build.talisman4}} }
-            </td>
-            <td>
-                {{f.build.weapon1}}  
-                {{f.build.weapon2}}
-            </td>
-            <td><button (click)="deleteFavorite(f.id)">Delete</button></td>
-        </tr>
-        }
-</table>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>{{c.build.weapon1}}</li>
+                            <li>{{c.build.weapon2}}</li>
+                        </ul>
+                          
+                        
+                    </td>
+                    <td><button (click)="deleteBuild(c.buildId, c.id)">Delete</button>
+                    <button (click)="UpdateBuild(c.build)">Update</button></td>
+                </tr>
+            }    
+        </table>
+    
+    } @else {
+        <table>
+            <tr>
+                <th>Build Name</th>
+                <th>Armor</th>
+                <th>Ash Of War</th>
+                <th>Class</th>
+                <th>Spells</th>
+                <th>Talismans</th>
+                <th>Weapons</th>
+                <th></th>
+            </tr>
+            @for (f of allFavorites; track $index) {
+                <tr>
+                    <td>{{f.build.buildName}}</td>
+                    <td>
+                        <ul>
+                            <li>{{f.build.armorHead}}</li> 
+                            <li>{{f.build.armorBody}}</li> 
+                            <li>{{f.build.armorHands}}</li> 
+                            <li>{{f.build.armorLegs}} </li>
+                            </ul>
+                    </td>
+                    <td>{{f.build.ashOfWar}}</td>
+                    <td>{{f.build.classes}}</td>
+                    <td>
+                        <ul>
+                            <li>{{f.build.spell1}}</li>
+                            <li>{{f.build.spell2}}</li>
+                            <li>{{f.build.spell3}}</li>
+                            <li>{{f.build.spell4}}</li>
+                            <li>{{f.build.spell5}}</li>
+                            <li>{{f.build.spell6}}</li>
+                            <li>{{f.build.spell7}}</li>
+                            <li>{{f.build.spell8}}</li>
+                            <li>{{f.build.spell9}}</li>
+                            <li>{{f.build.spell10}}</li>
+                            <li>{{f.build.spell11}}</li>
+                            <li>{{f.build.spell12}}</li>
+                        </ul>
+                    </td>
+                    <td>{{f.build.talisman1}} 
+                        @if (f.build.talisman2 != null) { {{f.build.talisman2}} }
+                        @if (f.build.talisman3 != null) { {{f.build.talisman3}} }
+                        @if (f.build.talisman4 != null) { {{f.build.talisman4}} }
+                    </td>
+                    <td>
+                        {{f.build.weapon1}}  
+                        {{f.build.weapon2}}
+                    </td>
+                    <td><button (click)="deleteFavorite(f.id)">Delete</button></td>
+                </tr>
+                }
+        </table>
+    }
 }@else {
 <app-create [updatingBuild]="currentBuild"></app-create>
-    }
+}
 

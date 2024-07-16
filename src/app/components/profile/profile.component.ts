@@ -23,6 +23,7 @@ export class ProfileComponent {
   allCreated: Created [] =  [];
   updatingBuild:boolean = false;
   currentBuild:Build = {} as Build;
+  showBuild: boolean = false;
   @Output() updateBuildEvent = new EventEmitter <Build>; 
 
   constructor(private socialAuthServiceConfig: SocialAuthService, private _databaseService: DatabaseService) { }
@@ -62,5 +63,14 @@ export class ProfileComponent {
 
   deleteFavorite(favoriteId:number) {
     this._databaseService.deleteFavorite(favoriteId).subscribe((response) => {this.getFavoriteByID(this.user.id)});
+  }
+
+  changeDisplay(num: number) {
+    this.showBuild = !this.showBuild;
+    if(num == 1) {
+      this.showBuild = true;
+    } else {
+      this.showBuild = false;
+    }
   }
 }

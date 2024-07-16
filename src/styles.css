@@ -11,6 +11,23 @@ html {
     background-size: cover;
     background-attachment: fixed;
     background-position: center center;
-
     
+}
+
+table,td,th{
+    border: 2px solid;
+    border-color: #6b7457;
+    background-color: #0a1b1a7e ;
+    border-collapse:collapse;
+    table-layout:fixed;
+    width: 90%;
+    margin-left: 0%;
+    color: #e2dfb7;
+}
+
+.list-group-item:empty {
+    display: none;
+}
+
+ul {
 }
