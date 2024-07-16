@@ -20,14 +20,24 @@ table,td,th{
     background-color: #0a1b1a7e ;
     border-collapse:collapse;
     table-layout:fixed;
-    width: 90%;
-    margin-left: 0%;
+    width: 100%;
+    text-align: center;
+    font-size: auto;
     color: #e2dfb7;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+li{
+    text-align: left;
 }
 
-.list-group-item:empty {
-    display: none;
+img{
+    height: 100%;
+    width: 100%
 }
 
-ul {
+.tablebutton{
+    background-color: #e4bf62;
+    border-color:#0e0e0d ;
 }

@@ -12,6 +12,7 @@ import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import {RouterLink} from '@angular/router';
 import { Created } from '../../models/created';
 import { ProfileComponent } from '../profile/profile.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create',
@@ -26,6 +27,7 @@ import { ProfileComponent } from '../profile/profile.component';
     FormsModule,
     RouterLink,
     ProfileComponent,
+    CommonModule
   ],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css',
@@ -202,4 +204,8 @@ export class CreateComponent {
     console.log(this.updatingBuild.id)
   }
 
+  checkifNull(item:string) {
+    if (item != undefined && item != "Helm" && item != "Chest Armor" && item != "Gauntlets" && item != "Leg Armor" && item != "") {return true}
+    else {return false};
+  }
 }

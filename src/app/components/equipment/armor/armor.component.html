@@ -34,8 +34,8 @@
                         {{r.name}} {{r.amount}}
                         }</td>
                     <td>{{a.weight}}</td>
-                    <td><img height="200px" src="{{a.image}}"></td>
-                    <td><button (click)="addArmor(a.name, a.category)">Add</button></td>
+                    <td><img src="{{a.image}}"></td>
+                    <td><button class="tablebutton" (click)="addArmor(a.name, a.category)">Add</button></td>
                 </tr>
             }
         }
@@ -55,8 +55,8 @@
                             {{r.name}} {{r.amount}}
                             }</td>
                         <td>{{a.weight}}</td>
-                        <td><img height="200px" src="{{a.image}}"></td>
-                        <td><button (click)="addArmor(a.name,a.category)">Add</button></td>
+                        <td><img src="{{a.image}}"></td>
+                        <td><button class="tablebutton" (click)="addArmor(a.name,a.category)">Add</button></td>
                     </tr>
                 }
             }

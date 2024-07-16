@@ -34,8 +34,8 @@
                         <td>@for (r of s.requires; track $index) {
                             {{r.name}} {{r.amount}}
                         }</td>
-                        <td><img height="200px" src="{{s.image}}"></td>
-                        <td><button (click)="addSpell(s.name)">Add</button></td>
+                        <td><img src="{{s.image}}"></td>
+                        <td><button class="tablebutton" (click)="addSpell(s.name)">Add</button></td>
                     </tr>
                 }
             }
@@ -54,8 +54,8 @@
                         <td>@for (r of s.requires; track $index) {
                             {{r.name}} {{r.amount}}
                         }</td>
-                        <td><img height="200px" src="{{s.image}}"></td>
-                        <td><button (click)="addSpell(s.name)">Add</button></td>
+                        <td><img src="{{s.image}}"></td>
+                        <td><button class="tablebutton" (click)="addSpell(s.name)">Add</button></td>
                     </tr>
                 }
                 
@@ -75,8 +75,8 @@
                         <td>@for (r of s.requires; track $index) {
                             {{r.name}} {{r.amount}}
                         }</td>
-                        <td><img height="200px" src="{{s.image}}"></td>
-                        <td><button (click)="addSpell(s.name)">Add</button></td>
+                        <td><img src="{{s.image}}"></td>
+                        <td><button class="tablebutton" (click)="addSpell(s.name)">Add</button></td>
                     </tr>
                 }
                 

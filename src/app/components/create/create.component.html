@@ -26,10 +26,8 @@
         </td>
         <td>
             <ul>
-            @for (armor of buildArmor; track $index) {
-                @if(armor != "Helm" && armor != "Chest Armor" && armor != "Gauntlets" && armor != "Leg Armor"){
-                    <li>{{armor}}</li>
-                }
+            @for (armor of buildArmor; track buildArmor[4]) {
+                    <li *ngIf="checkifNull(armor)">{{armor}}</li>
             }
             </ul>
         </td>
@@ -38,21 +36,21 @@
         <td>
             <ul>
         @for (spell of buildSpells; track $index) {
-            <li>{{spell}}</li>
+            <li *ngIf="checkifNull(spell)">{{spell}}</li>
         }
             </ul>
         </td>
         <td>
             <ul>
         @for (talisman of buildTalisman; track $index) {
-            <li>{{talisman}}</li>
+            <li *ngIf="checkifNull(talisman)">{{talisman}}</li>
         }
             </ul>
         </td>
         <td>
             <ul>
         @for (weapon of buildWeapons; track $index) {
-            <li>{{weapon}}</li>
+            <li *ngIf="checkifNull(weapon)">{{weapon}}</li>
         }
             </ul>
         </td>

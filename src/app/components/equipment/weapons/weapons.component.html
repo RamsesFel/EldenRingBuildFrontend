@@ -39,8 +39,8 @@
                     <td>@for (r of w.requiredAttributes; track $index) {
                         {{r.name}} {{r.amount}}
                     }</td>
-                    <td><img height="200px" src="{{w.image}}"></td>
-                    <td><button (click)="addWeapon(w.name)">Add</button></td>
+                    <td><img src="{{w.image}}"></td>
+                    <td><button class="tablebutton" (click)="addWeapon(w.name)">Add</button></td>
                 </tr>
             }
         }
@@ -66,8 +66,8 @@
                     <td>@for (r of w.requiredAttributes; track $index) {
                         {{r.name}} {{r.amount}}
                     }</td>
-                    <td><img height="200px" src="{{w.image}}"></td>
-                    <td><button (click)="addWeapon(w.name)">Add</button></td>
+                    <td><img src="{{w.image}}"></td>
+                    <td><button class="tablebutton" (click)="addWeapon(w.name)">Add</button></td>
                 </tr>
             }
         }
@@ -93,8 +93,8 @@
                         <td>@for (r of w.requiredAttributes; track $index) {
                             {{r.name}} {{r.amount}}
                         }</td>
-                        <td><img height="200px" src="{{w.image}}"></td>
-                        <td><button (click)="addWeapon(w.name)">Add</button></td>
+                        <td><img src="{{w.image}}"></td>
+                        <td><button class="tablebutton" (click)="addWeapon(w.name)">Add</button></td>
                     </tr>
                 }
             }

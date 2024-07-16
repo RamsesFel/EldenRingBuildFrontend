@@ -7,12 +7,13 @@ import { Favorite } from '../../models/favorite';
 import { Created } from '../../models/created';
 import { Build } from '../../models/build';
 import { CreateComponent } from '../create/create.component';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [GoogleSigninButtonModule, WeaponsComponent, RouterLink, RouterOutlet, CreateComponent],
+  imports: [GoogleSigninButtonModule, WeaponsComponent, RouterLink, RouterOutlet, CreateComponent, CommonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -72,5 +73,10 @@ export class ProfileComponent {
     } else {
       this.showBuild = false;
     }
+  }
+
+  checkifNull(item:string) {
+    if (item != undefined) {return true}
+    else {return false};
   }
 }
