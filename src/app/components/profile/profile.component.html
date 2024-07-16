@@ -1,10 +1,4 @@
-@if (!loggedIn) {
-<!-- Custom component that handles log in -->
-<asl-google-signin-button></asl-google-signin-button>
 
-} @else {
-<!-- calls our log out method -->
-<button class="btn btn-outline-dark" (click)="signOut()">Sign Out</button>
 @if(updatingBuild == false){
 <h1>My Builds</h1>
 <table>
@@ -129,4 +123,4 @@
 }@else {
 <app-create [updatingBuild]="currentBuild"></app-create>
     }
-}
+

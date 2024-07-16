@@ -1,7 +1,16 @@
-<header>
-    <button routerLink="/">Home</button>
-    <button routerLink="Create">Create</button>
-    <button routerLink="All">All Builds</button>
-</header>
 
-<router-outlet></router-outlet>
+<ul>
+    <li class="something"><a routerLink="/">Home </a></li>
+    <li class="something"><a routerLink="Create">Create</a></li>
+    <li class="something"><a routerLink="All">All Builds</a></li>
+   <li> @if (!loggedIn) {
+    <!-- Custom component that handles log in -->
+    <asl-google-signin-button ></asl-google-signin-button>
+    
+    } @else {
+    <!-- calls our log out method -->
+    <a class="btn btn-outline-dark" style="float: right; margin-top: 5px; margin-right: 5px;" (click)="signOut()">Sign Out</a> }</li>
+  </ul>
+  <router-outlet></router-outlet>
+
+ 
