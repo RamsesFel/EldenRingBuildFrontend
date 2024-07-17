@@ -1,0 +1,16 @@
+div{
+    font-size: 25px;
+    font-weight: 500;
+    font-family: Cinzel;
+    color: #e8ce3d;
+    background-color:  #0a1b1ab0;
+    border-bottom: 3px solid black;
+}
+h2 {
+    font-family: Cinzel;
+    text-align: center;
+    color: #384740;
+    padding: 0%;
+    margin-bottom: 0%;
+    margin-top: 55px;
+}

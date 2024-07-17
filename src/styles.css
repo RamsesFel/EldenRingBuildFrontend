@@ -37,6 +37,7 @@ th {
   font-weight: 500;
   font-style: normal;
 }
+
 li {
   text-align: left;
 }
@@ -78,11 +79,10 @@ input {
   font-optical-sizing: auto;
   font-size: 16px;
   font-style: normal;
-  color: #1f1f1feb;
+  color: #1f1f1f;
 }
 
-select,
-option {
+select, option {
   background-color: #1f1f1feb;
   border: 2px solid #0a1b1a7e;
   font-family: "EB Garamond", serif;

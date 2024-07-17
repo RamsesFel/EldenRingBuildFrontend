@@ -1,10 +1,3 @@
-
-table,th,td{
-    border-style: solid;
-    border-color: black;
-    border-collapse:collapse;
-    width: 100%;
-}
 button{
     padding: 15px 32px;
     font-size: 16px;
@@ -13,4 +6,10 @@ button{
 input{
     width: 80%;
     height: 80%
+}
+
+div {
+    text-align: center;
+    margin: 0%;
+    padding: 0%;
 }
