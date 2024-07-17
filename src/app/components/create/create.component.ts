@@ -183,7 +183,7 @@ export class CreateComponent {
 
   resetBuild(){
     this.buildWeapons = [];
-    this.buildArmor = [];
+    this.buildArmor = ["Helm", "Chest Armor", "Gauntlets", "Leg Armor", "", "", "", ""];
     this.buildAOF = '';
     this.buildTalisman = [];
     this.buildSpells = [];

@@ -3,19 +3,24 @@
     <tr>
         <th>Build Creator</th>
         <th>Build Name</th>
-        <th>Armor</th>
-        <th>Ash Of War</th>
         <th>Class</th>
-        <th>Spells</th>
-        <th>Talismans</th>
+        <th>Armor</th>
         <th>Weapons</th>
+        <th>Ash Of War</th>
+        <th>Talismans</th>
+        <th>Spells</th>
         <th></th>
     </tr>
+       
+       
+        
 
     @for (b of allBuilds; track $index) {
         <tr>
             <td>{{b.buildCreator}}</td>
             <td>{{b.buildName}}</td>
+            <td>{{b.classes}}</td>
+            
             <td>
                 <ul>
                     <li *ngIf="checkifNull(b.armorHead)"><span>Helm:</span> {{b.armorHead}} </li>
@@ -24,9 +29,23 @@
                     <li *ngIf="checkifNull(b.armorLegs)"><span>Legs:</span> {{b.armorLegs}}</li>
                 </ul>
             </td>
-            <td>{{b.ashOfWar}}</td>
-            <td>{{b.classes}}</td>
             <td>
+                <ul>
+                    <li *ngIf="checkifNull(b.weapon1)">{{b.weapon1}}</li>
+                    <li *ngIf="checkifNull(b.weapon2)">{{b.weapon2}}</li>
+                </ul>
+            </td>
+            <td>{{b.ashOfWar}}</td>
+            <td>
+                <ul>
+                    <li *ngIf="checkifNull(b.talisman1)">{{b.talisman1}}</li>
+                    <li *ngIf="checkifNull(b.talisman2)">{{b.talisman2}}</li>
+                    <li *ngIf="checkifNull(b.talisman3)">{{b.talisman3}}</li>
+                    <li *ngIf="checkifNull(b.talisman4)">{{b.talisman4}}</li>
+                </ul> 
+            </td>
+            <td>
+           
                 <ul>
                     <li *ngIf="checkifNull(b.spell1)">{{b.spell1}}</li>
                     <li *ngIf="checkifNull(b.spell2)">{{b.spell2}}</li>
@@ -42,20 +61,8 @@
                     <li *ngIf="checkifNull(b.spell12)">{{b.spell12}}</li>
                 </ul>
             </td>
-            <td>
-                <ul>
-                    <li *ngIf="checkifNull(b.talisman1)">{{b.talisman1}}</li>
-                    <li *ngIf="checkifNull(b.talisman2)">{{b.talisman2}}</li>
-                    <li *ngIf="checkifNull(b.talisman3)">{{b.talisman3}}</li>
-                    <li *ngIf="checkifNull(b.talisman4)">{{b.talisman4}}</li>
-                </ul> 
-            </td>
-            <td>
-                <ul>
-                    <li *ngIf="checkifNull(b.weapon1)">{{b.weapon1}}</li>
-                    <li *ngIf="checkifNull(b.weapon2)">{{b.weapon2}}</li>
-                </ul>
-            </td>
+           
+            
             <td><button (click)="addToFavorites(b.id)">Add To Favorites</button></td>
         </tr>
         }

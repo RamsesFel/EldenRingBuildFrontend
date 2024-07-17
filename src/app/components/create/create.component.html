@@ -1,8 +1,8 @@
 <header>
     <button (click)="showList(4)">Classes</button>
+    <button (click)="showList(2)">Armor</button>
     <button (click)="showList(1)">Weapons</button>
     <button (click)="showList(3)">Ashes Of War</button>
-    <button (click)="showList(2)">Armor</button>
     <button (click)="showList(6)">Talismans</button>
     <button (click)="showList(5)">Spells</button>
     
@@ -12,40 +12,26 @@
 <table>
     <tr>
         <th>Build Name</th>
-        <th>Armor</th>
-        <th>Ash Of War</th>
         <th>Class</th>
-        <th>Spells</th>
-        <th>Talismans</th>
+        <th>Armor</th>
         <th>Weapons</th>
+        <th>Ash Of War</th>
+        <th>Talismans</th>
+        <th>Spells</th>
+        
         <th></th>
     </tr>
     <tr>
         <td>
             <input type="text" [(ngModel)]="buildName" />
         </td>
+        <td>{{buildClass}}</td>
         <td>
             <ul>
                 <li *ngIf="checkifNull(buildArmor[4])"><span>Helm:</span> {{buildArmor[4]}}</li>
                 <li *ngIf="checkifNull(buildArmor[5])"><span>Chest:</span> {{buildArmor[5]}}</li>
                 <li *ngIf="checkifNull(buildArmor[6])"><span>Gauntlets:</span> {{buildArmor[6]}}</li>
                 <li *ngIf="checkifNull(buildArmor[7])"><span>Legs:</span> {{buildArmor[7]}}</li>
-            </ul>
-        </td>
-        <td>{{buildAOF}}</td>
-        <td>{{buildClass}}</td>
-        <td>
-            <ul>
-        @for (spell of buildSpells; track $index) {
-            <li *ngIf="checkifNull(spell)">{{spell}}</li>
-        }
-            </ul>
-        </td>
-        <td>
-            <ul>
-        @for (talisman of buildTalisman; track $index) {
-            <li *ngIf="checkifNull(talisman)">{{talisman}}</li>
-        }
             </ul>
         </td>
         <td>
@@ -55,6 +41,23 @@
         }
             </ul>
         </td>
+        <td>{{buildAOF}}</td>
+        <td>
+            <ul>
+        @for (talisman of buildTalisman; track $index) {
+            <li *ngIf="checkifNull(talisman)">{{talisman}}</li>
+        }
+            </ul>
+        </td>
+        <td>
+            <ul>
+        @for (spell of buildSpells; track $index) {
+            <li *ngIf="checkifNull(spell)">{{spell}}</li>
+        }
+            </ul>
+        </td>
+       
+       
         <td><button (click)="resetBuild()">Reset</button></td>
     </tr>
 </table>

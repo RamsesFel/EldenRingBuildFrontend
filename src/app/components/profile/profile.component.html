@@ -1,129 +1,148 @@
 @if(updatingBuild == false){
-    <h1 (click)="changeDisplay(1)">My Builds</h1>
-    <h1 (click)="changeDisplay(2)">Favorite Builds</h1>
-    @if (showBuild) {
-        <table>
+<h1 (click)="changeDisplay(1)">My Builds</h1>
+<h1 (click)="changeDisplay(2)">Favorite Builds</h1>
+@if (showBuild) {
+<table>
+  <tr>
+    <th>Build Name</th>
+    <th>Class</th>
+    <th>Armor</th>
+    <th>Weapons</th>
+    <th>Ash Of War</th>
+    <th>Talismans</th>
+    <th>Spells</th>
+    <th></th>
+  </tr>
 
-            <tr>
-                <th>Build Name</th>
-                <th>Armor</th>
-                <th>Ash Of War</th>
-                <th>Class</th>
-                <th>Spells</th>
-                <th>Talismans</th>
-                <th>Weapons</th>
-                <th></th>
-            </tr>
-            @for (c of allCreated; track $index) {
-                <tr>
-                    <td>{{c.build.buildName}}</td>
-                    <td>
-                        <ul>
-                            <li *ngIf="checkifNull(c.build.armorHead)"><span>Helm: </span>{{c.build.armorHead}} </li>
-                            <li *ngIf="checkifNull(c.build.armorBody)"><span>Chest:</span> {{c.build.armorBody}}</li>
-                            <li *ngIf="checkifNull(c.build.armorHands)"><span>Gauntlets: </span>{{c.build.armorHands}}</li>
-                            <li *ngIf="checkifNull(c.build.armorLegs)"><span>Legs: </span>{{c.build.armorLegs}}</li>
-                        </ul>
-                    </td>
-                    <td>{{c.build.ashOfWar}}</td>
-                    <td>{{c.build.classes}}</td>
-                    <td>
-                        <ul>
-                            <li *ngIf="checkifNull(c.build.spell1)">{{c.build.spell1}}</li>
-                            <li *ngIf="checkifNull(c.build.spell2)">{{c.build.spell2}}</li>
-                            <li *ngIf="checkifNull(c.build.spell3)">{{c.build.spell3}}</li>
-                            <li *ngIf="checkifNull(c.build.spell4)">{{c.build.spell4}}</li>
-                            <li *ngIf="checkifNull(c.build.spell5)">{{c.build.spell5}}</li>
-                            <li *ngIf="checkifNull(c.build.spell6)">{{c.build.spell6}}</li>
-                            <li *ngIf="checkifNull(c.build.spell7)">{{c.build.spell7}}</li>
-                            <li *ngIf="checkifNull(c.build.spell8)">{{c.build.spell8}}</li>
-                            <li *ngIf="checkifNull(c.build.spell9)">{{c.build.spell9}}</li>
-                            <li *ngIf="checkifNull(c.build.spell10)">{{c.build.spell10}}</li>
-                            <li *ngIf="checkifNull(c.build.spell11)">{{c.build.spell11}}</li>
-                            <li *ngIf="checkifNull(c.build.spell12)">{{c.build.spell12}}</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li *ngIf="checkifNull(c.build.talisman1)">{{c.build.talisman1}}</li>
-                            <li *ngIf="checkifNull(c.build.talisman2)">{{c.build.talisman2}}</li>
-                            <li *ngIf="checkifNull(c.build.talisman3)">{{c.build.talisman3}}</li>
-                            <li *ngIf="checkifNull(c.build.talisman4)">{{c.build.talisman4}}</li>
-                        </ul> 
-                    </td>
-                    <td>
-                        <ul>
-                            <li *ngIf="checkifNull(c.build.weapon1)">{{c.build.weapon1}}</li>
-                            <li *ngIf="checkifNull(c.build.weapon2)">{{c.build.weapon2}}</li>
-                        </ul>
-                    </td>
-                    <td><button (click)="deleteBuild(c.buildId, c.id)">Delete</button>
-                    <button (click)="UpdateBuild(c.build)">Update</button></td>
-                </tr>
-            }    
-        </table>
-    
-    } @else {
-        <table>
-            <tr>
-                <th>Build Name</th>
-                <th>Armor</th>
-                <th>Ash Of War</th>
-                <th>Class</th>
-                <th>Spells</th>
-                <th>Talismans</th>
-                <th>Weapons</th>
-                <th></th>
-            </tr>
-            @for (f of allFavorites; track $index) {
-                <tr>
-                    <td>{{f.build.buildName}}</td>
-                    <td>
-                        <ul>
-                            <li *ngIf="checkifNull(f.build.armorHead)"><span>Helm: </span>{{f.build.armorHead}} </li>
-                            <li *ngIf="checkifNull(f.build.armorBody)"><span>Chest: </span>{{f.build.armorBody}}</li>
-                            <li *ngIf="checkifNull(f.build.armorHands)"><span>Gauntlets: </span>{{f.build.armorHands}}</li>
-                            <li *ngIf="checkifNull(f.build.armorLegs)"><span>Legs: </span>{{f.build.armorLegs}}</li>
-                        </ul>
-                    </td>
-                    <td>{{f.build.ashOfWar}}</td>
-                    <td>{{f.build.classes}}</td>
-                    <td>
-                        <ul>
-                            <li *ngIf="checkifNull(f.build.spell1)">{{f.build.spell1}}</li>
-                            <li *ngIf="checkifNull(f.build.spell2)">{{f.build.spell2}}</li>
-                            <li *ngIf="checkifNull(f.build.spell3)">{{f.build.spell3}}</li>
-                            <li *ngIf="checkifNull(f.build.spell4)">{{f.build.spell4}}</li>
-                            <li *ngIf="checkifNull(f.build.spell5)">{{f.build.spell5}}</li>
-                            <li *ngIf="checkifNull(f.build.spell6)">{{f.build.spell6}}</li>
-                            <li *ngIf="checkifNull(f.build.spell7)">{{f.build.spell7}}</li>
-                            <li *ngIf="checkifNull(f.build.spell8)">{{f.build.spell8}}</li>
-                            <li *ngIf="checkifNull(f.build.spell9)">{{f.build.spell9}}</li>
-                            <li *ngIf="checkifNull(f.build.spell10)">{{f.build.spell10}}</li>
-                            <li *ngIf="checkifNull(f.build.spell11)">{{f.build.spell11}}</li>
-                            <li *ngIf="checkifNull(f.build.spell12)">{{f.build.spell12}}</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li *ngIf="checkifNull(f.build.talisman1)">{{f.build.talisman1}}</li>
-                            <li *ngIf="checkifNull(f.build.talisman2)">{{f.build.talisman2}}</li>
-                            <li *ngIf="checkifNull(f.build.talisman3)">{{f.build.talisman3}}</li>
-                            <li *ngIf="checkifNull(f.build.talisman4)">{{f.build.talisman4}}</li>
-                        </ul> 
-                    </td>
-                    <td>
-                        <ul>
-                            <li *ngIf="checkifNull(f.build.weapon1)">{{f.build.weapon1}}</li>
-                            <li *ngIf="checkifNull(f.build.weapon2)">{{f.build.weapon2}}</li>
-                        </ul>
-                    </td>
-                    <td><button (click)="deleteFavorite(f.id)">Delete</button></td>
-                </tr>
-                }
-        </table>
-    }
-}@else {
+  @for (c of allCreated; track $index) {
+  <tr>
+    <td>{{ c.build.buildName }}</td>
+    <td>{{ c.build.classes }}</td>
+    <td>
+      <ul>
+        <li *ngIf="checkifNull(c.build.armorHead)">
+          <span>Helm: </span>{{ c.build.armorHead }}
+        </li>
+        <li *ngIf="checkifNull(c.build.armorBody)">
+          <span>Chest:</span> {{ c.build.armorBody }}
+        </li>
+        <li *ngIf="checkifNull(c.build.armorHands)">
+          <span>Gauntlets: </span>{{ c.build.armorHands }}
+        </li>
+        <li *ngIf="checkifNull(c.build.armorLegs)">
+          <span>Legs: </span>{{ c.build.armorLegs }}
+        </li>
+      </ul>
+    </td>
+
+    <td>
+      <ul>
+        <li *ngIf="checkifNull(c.build.weapon1)">{{ c.build.weapon1 }}</li>
+        <li *ngIf="checkifNull(c.build.weapon2)">{{ c.build.weapon2 }}</li>
+      </ul>
+    </td>
+    <td>{{ c.build.ashOfWar }}</td>
+    <td>
+      <ul>
+        <li *ngIf="checkifNull(c.build.talisman1)">{{ c.build.talisman1 }}</li>
+        <li *ngIf="checkifNull(c.build.talisman2)">{{ c.build.talisman2 }}</li>
+        <li *ngIf="checkifNull(c.build.talisman3)">{{ c.build.talisman3 }}</li>
+        <li *ngIf="checkifNull(c.build.talisman4)">{{ c.build.talisman4 }}</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li *ngIf="checkifNull(c.build.spell1)">{{ c.build.spell1 }}</li>
+        <li *ngIf="checkifNull(c.build.spell2)">{{ c.build.spell2 }}</li>
+        <li *ngIf="checkifNull(c.build.spell3)">{{ c.build.spell3 }}</li>
+        <li *ngIf="checkifNull(c.build.spell4)">{{ c.build.spell4 }}</li>
+        <li *ngIf="checkifNull(c.build.spell5)">{{ c.build.spell5 }}</li>
+        <li *ngIf="checkifNull(c.build.spell6)">{{ c.build.spell6 }}</li>
+        <li *ngIf="checkifNull(c.build.spell7)">{{ c.build.spell7 }}</li>
+        <li *ngIf="checkifNull(c.build.spell8)">{{ c.build.spell8 }}</li>
+        <li *ngIf="checkifNull(c.build.spell9)">{{ c.build.spell9 }}</li>
+        <li *ngIf="checkifNull(c.build.spell10)">{{ c.build.spell10 }}</li>
+        <li *ngIf="checkifNull(c.build.spell11)">{{ c.build.spell11 }}</li>
+        <li *ngIf="checkifNull(c.build.spell12)">{{ c.build.spell12 }}</li>
+      </ul>
+    </td>
+
+    <td>
+      <button (click)="deleteBuild(c.buildId, c.id)">Delete</button>
+      <button (click)="UpdateBuild(c.build)">Update</button>
+    </td>
+  </tr>
+  }
+</table>
+
+} @else {
+<table>
+  <tr>
+    <th>Build Name</th>
+    <th>Class</th>
+    <th>Armor</th>
+    <th>Weapons</th>
+    <th>Ash Of War</th>
+    <th>Talismans</th>
+    <th>Spells</th>
+    <th></th>
+  </tr>
+  @for (f of allFavorites; track $index) {
+  <tr>
+    <td>{{ f.build.buildName }}</td>
+    <td>{{ f.build.classes }}</td>
+    <td>
+      <ul>
+        <li *ngIf="checkifNull(f.build.armorHead)">
+          <span>Helm: </span>{{ f.build.armorHead }}
+        </li>
+        <li *ngIf="checkifNull(f.build.armorBody)">
+          <span>Chest: </span>{{ f.build.armorBody }}
+        </li>
+        <li *ngIf="checkifNull(f.build.armorHands)">
+          <span>Gauntlets: </span>{{ f.build.armorHands }}
+        </li>
+        <li *ngIf="checkifNull(f.build.armorLegs)">
+          <span>Legs: </span>{{ f.build.armorLegs }}
+        </li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li *ngIf="checkifNull(f.build.weapon1)">{{ f.build.weapon1 }}</li>
+        <li *ngIf="checkifNull(f.build.weapon2)">{{ f.build.weapon2 }}</li>
+      </ul>
+    </td>
+    <td>{{ f.build.ashOfWar }}</td>
+
+    <td>
+      <ul>
+        <li *ngIf="checkifNull(f.build.talisman1)">{{ f.build.talisman1 }}</li>
+        <li *ngIf="checkifNull(f.build.talisman2)">{{ f.build.talisman2 }}</li>
+        <li *ngIf="checkifNull(f.build.talisman3)">{{ f.build.talisman3 }}</li>
+        <li *ngIf="checkifNull(f.build.talisman4)">{{ f.build.talisman4 }}</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li *ngIf="checkifNull(f.build.spell1)">{{ f.build.spell1 }}</li>
+        <li *ngIf="checkifNull(f.build.spell2)">{{ f.build.spell2 }}</li>
+        <li *ngIf="checkifNull(f.build.spell3)">{{ f.build.spell3 }}</li>
+        <li *ngIf="checkifNull(f.build.spell4)">{{ f.build.spell4 }}</li>
+        <li *ngIf="checkifNull(f.build.spell5)">{{ f.build.spell5 }}</li>
+        <li *ngIf="checkifNull(f.build.spell6)">{{ f.build.spell6 }}</li>
+        <li *ngIf="checkifNull(f.build.spell7)">{{ f.build.spell7 }}</li>
+        <li *ngIf="checkifNull(f.build.spell8)">{{ f.build.spell8 }}</li>
+        <li *ngIf="checkifNull(f.build.spell9)">{{ f.build.spell9 }}</li>
+        <li *ngIf="checkifNull(f.build.spell10)">{{ f.build.spell10 }}</li>
+        <li *ngIf="checkifNull(f.build.spell11)">{{ f.build.spell11 }}</li>
+        <li *ngIf="checkifNull(f.build.spell12)">{{ f.build.spell12 }}</li>
+      </ul>
+    </td>
+    <td><button (click)="deleteFavorite(f.id)">Delete</button></td>
+  </tr>
+  }
+</table>
+} }@else {
 <app-create [updatingBuild]="currentBuild"></app-create>
 }
-
