@@ -26,10 +26,10 @@
         </td>
         <td>
             <ul>
-                <li *ngIf="checkifNull(buildArmor[4])">Helm: {{buildArmor[4]}}</li>
-                <li *ngIf="checkifNull(buildArmor[5])">Chest: {{buildArmor[5]}}</li>
-                <li *ngIf="checkifNull(buildArmor[6])">Gauntlets: {{buildArmor[6]}}</li>
-                <li *ngIf="checkifNull(buildArmor[7])">Legs: {{buildArmor[7]}}</li>
+                <li *ngIf="checkifNull(buildArmor[4])"><span>Helm:</span> {{buildArmor[4]}}</li>
+                <li *ngIf="checkifNull(buildArmor[5])"><span>Chest:</span> {{buildArmor[5]}}</li>
+                <li *ngIf="checkifNull(buildArmor[6])"><span>Gauntlets:</span> {{buildArmor[6]}}</li>
+                <li *ngIf="checkifNull(buildArmor[7])"><span>Legs:</span> {{buildArmor[7]}}</li>
             </ul>
         </td>
         <td>{{buildAOF}}</td>
@@ -61,9 +61,9 @@
     <br>
     <br>
     @if(this.buildId != 0){
-        <button style="background-color:rgb(0, 247, 255)" routerLink="/Submitted" (click)="createBuild()">Update Build</button>
+        <button routerLink="/Submitted" (click)="createBuild()">Update Build</button>
     }@else{
-        <button style="background-color:rgb(0, 247, 255)" routerLink="/Submitted" (click)="createBuild()">Create Build</button>
+        <button routerLink="/Submitted" (click)="createBuild()">Create Build</button>
     }
     <br>
 

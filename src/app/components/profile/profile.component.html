@@ -19,10 +19,10 @@
                     <td>{{c.build.buildName}}</td>
                     <td>
                         <ul>
-                            <li *ngIf="checkifNull(c.build.armorHead)">Helm: {{c.build.armorHead}} </li>
-                            <li *ngIf="checkifNull(c.build.armorBody)">Chest: {{c.build.armorBody}}</li>
-                            <li *ngIf="checkifNull(c.build.armorHands)">Gauntlets: {{c.build.armorHands}}</li>
-                            <li *ngIf="checkifNull(c.build.armorLegs)">Legs: {{c.build.armorLegs}}</li>
+                            <li *ngIf="checkifNull(c.build.armorHead)"><span>Helm: </span>{{c.build.armorHead}} </li>
+                            <li *ngIf="checkifNull(c.build.armorBody)"><span>Chest:</span> {{c.build.armorBody}}</li>
+                            <li *ngIf="checkifNull(c.build.armorHands)"><span>Gauntlets: </span>{{c.build.armorHands}}</li>
+                            <li *ngIf="checkifNull(c.build.armorLegs)"><span>Legs: </span>{{c.build.armorLegs}}</li>
                         </ul>
                     </td>
                     <td>{{c.build.ashOfWar}}</td>
@@ -80,10 +80,10 @@
                     <td>{{f.build.buildName}}</td>
                     <td>
                         <ul>
-                            <li *ngIf="checkifNull(f.build.armorHead)">{{f.build.armorHead}} </li>
-                            <li *ngIf="checkifNull(f.build.armorBody)">{{f.build.armorBody}}</li>
-                            <li *ngIf="checkifNull(f.build.armorHands)">{{f.build.armorHands}}</li>
-                            <li *ngIf="checkifNull(f.build.armorLegs)">{{f.build.armorLegs}}</li>
+                            <li *ngIf="checkifNull(f.build.armorHead)"><span>Helm: </span>{{f.build.armorHead}} </li>
+                            <li *ngIf="checkifNull(f.build.armorBody)"><span>Chest: </span>{{f.build.armorBody}}</li>
+                            <li *ngIf="checkifNull(f.build.armorHands)"><span>Gauntlets: </span>{{f.build.armorHands}}</li>
+                            <li *ngIf="checkifNull(f.build.armorLegs)"><span>Legs: </span>{{f.build.armorLegs}}</li>
                         </ul>
                     </td>
                     <td>{{f.build.ashOfWar}}</td>
