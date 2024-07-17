@@ -12,7 +12,8 @@ export class DatabaseService {
 
   constructor(private http:HttpClient) { }
 
-  url: string = "https://localhost:7063";
+  // url: string = "https://localhost:7063";
+  url: string = "https://eldenringbuildbackend20240705110645.azurewebsites.net";
 
   //-----------------build
   getAllBuilds():Observable<Build[]> {
