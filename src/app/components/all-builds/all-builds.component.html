@@ -18,10 +18,10 @@
             <td>{{b.buildName}}</td>
             <td>
                 <ul>
-                    <li *ngIf="checkifNull(b.armorHead)">{{b.armorHead}} </li>
-                    <li *ngIf="checkifNull(b.armorBody)">{{b.armorBody}}</li>
-                    <li *ngIf="checkifNull(b.armorHands)">{{b.armorHands}}</li>
-                    <li *ngIf="checkifNull(b.armorLegs)">{{b.armorLegs}}</li>
+                    <li *ngIf="checkifNull(b.armorHead)">Helm: {{b.armorHead}} </li>
+                    <li *ngIf="checkifNull(b.armorBody)">Chest: {{b.armorBody}}</li>
+                    <li *ngIf="checkifNull(b.armorHands)">Gauntlets: {{b.armorHands}}</li>
+                    <li *ngIf="checkifNull(b.armorLegs)">Legs: {{b.armorLegs}}</li>
                 </ul>
             </td>
             <td>{{b.ashOfWar}}</td>

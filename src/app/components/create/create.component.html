@@ -26,9 +26,10 @@
         </td>
         <td>
             <ul>
-            @for (armor of buildArmor; track buildArmor[4]) {
-                    <li *ngIf="checkifNull(armor)">{{armor}}</li>
-            }
+                <li *ngIf="checkifNull(buildArmor[4])">Helm: {{buildArmor[4]}}</li>
+                <li *ngIf="checkifNull(buildArmor[5])">Chest: {{buildArmor[5]}}</li>
+                <li *ngIf="checkifNull(buildArmor[6])">Gauntlets: {{buildArmor[6]}}</li>
+                <li *ngIf="checkifNull(buildArmor[7])">Legs: {{buildArmor[7]}}</li>
             </ul>
         </td>
         <td>{{buildAOF}}</td>
