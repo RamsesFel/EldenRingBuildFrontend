@@ -35,7 +35,8 @@ export class AllBuildsComponent {
 
   getAllBuilds() {
     this._databaseService.getAllBuilds().subscribe((response: Build[]) => {
-      this.allBuilds = response;
+      this.allBuilds = response.reverse();
+
     });
   }
 

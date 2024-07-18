@@ -17,9 +17,7 @@ html {
   background-position: center center;
 }
 
-table,
-td,
-th {
+table,td,th {
   border: 2px solid;
   border-color: #6b7457;
   background-color: #0a1b1a7e;
@@ -61,7 +59,7 @@ button {
   font-optical-sizing: auto;
   font-size: 22px;
   font-style: normal;
-  color: #1f1f1feb;
+  color: #1f1f1f;
 }
 
 span {
@@ -79,7 +77,7 @@ input {
   font-optical-sizing: auto;
   font-size: 16px;
   font-style: normal;
-  color: #1f1f1f;
+  color: #1d3233;
 }
 
 select, option {
@@ -92,16 +90,16 @@ select, option {
   color: #e4bf62;
   box-shadow: #0a1b1a7e;
 }
+
 h1{
-    font-family: Cinzel;
-    /* font-family: "EB Garamond", serif; */
-    font-optical-sizing: auto;
-    font-style: normal;
-    color: #1d3233;
-    text-decoration: underline;
+  font-family: Cinzel;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: #1d3233;
+  text-decoration: underline;
 }
-h1::selection {
-    color: rgb(3, 21, 100);
-    background-color: black;
-  }
-  
+
+input::placeholder {
+  color: #1d3233;;
+}
+
