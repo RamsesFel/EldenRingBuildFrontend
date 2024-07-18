@@ -139,7 +139,8 @@ export class CreateComponent {
   }
 
   createBuild() {
-    this.currentBuild.userId = this.user.id;
+    if(this.loggedIn != false){
+      this.currentBuild.userId = this.user.id;
     this.currentBuild.buildName = this.buildName;
     this.currentBuild.weapon1 = this.buildWeapons[0];
     this.currentBuild.weapon2 = this.buildWeapons[1];
@@ -178,7 +179,8 @@ export class CreateComponent {
       this.currentBuild.id = this.buildId;
       this._databaseService.updateBuild(this.currentBuild).subscribe((Response:void) =>{});
     }
-
+    }
+    
   }
 
   resetBuild(){

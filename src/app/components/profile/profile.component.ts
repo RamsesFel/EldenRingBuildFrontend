@@ -53,8 +53,11 @@ export class ProfileComponent {
   }
 
   deleteBuild(buildId:number, createdId:number) {
-    this._databaseService.deleteBuild(buildId).subscribe((response:void) => {});
-    this._databaseService.deleteCreated(createdId).subscribe((response:void) => {this.getCreatedByID(this.user.id)});    
+    this._databaseService.deleteCreated(createdId).subscribe((response:void) =>
+       {
+        this._databaseService.deleteBuild(buildId).subscribe((response:void) => {});
+        this.getCreatedByID(this.user.id)
+      });    
   }
 
   UpdateBuild(updateBuild:Build) {
